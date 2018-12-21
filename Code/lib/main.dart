@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:nimble_leaves/employee_list/employee_list.dart';
-
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
@@ -20,13 +18,7 @@ class FirstScreen extends StatelessWidget {
           elevation: 0,
           splashColor: Color.fromRGBO(248, 250, 251, 1),
           highlightColor: Color.fromRGBO(248, 250, 251, 1),
-          highlightElevation: 0,
-          onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => SecondScreen()),
-            // );
-          },
+          highlightElevation: 0,          
         ),
       ),
     );
