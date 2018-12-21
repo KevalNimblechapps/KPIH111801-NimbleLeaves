@@ -3,6 +3,8 @@ import 'package:nimble_leaves/employee_list/employee_list.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowMaterialGrid: false,
+    debugShowCheckedModeBanner: false,
     title: 'Navigation Basics',
     home: FirstScreen(),
   ));
