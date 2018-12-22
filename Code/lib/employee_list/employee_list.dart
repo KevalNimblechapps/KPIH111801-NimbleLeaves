@@ -13,6 +13,7 @@ class SecondScreen extends StatelessWidget {
           title: new Text(""),
           leading: Image.asset('images/logo.png'),
           backgroundColor: Color.fromRGBO(248, 250, 251, 1),
+          elevation: 0.0,
           actions: <Widget>[
             // const Text.rich(
             //   TextSpan(
