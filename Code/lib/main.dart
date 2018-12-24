@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
+=======
+import 'package:nimble_leaves/employee_list/employee_list.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowMaterialGrid: false,
+    debugShowCheckedModeBanner: false,
+    title: 'Navigation Basics',
+    theme: ThemeData(
+      // Define the default Brightness and Colors
+      brightness: Brightness.dark,
+      primaryColor: Color.fromRGBO(248, 250, 251, 1),
+      accentColor: Color.fromRGBO(78, 125, 254, 1),
+
+      // Define the default Font Family
+      fontFamily: 'Montserrat',
+    ),
+>>>>>>> Employee
     home: FirstScreen(),
   ));
 }
@@ -18,7 +37,17 @@ class FirstScreen extends StatelessWidget {
           elevation: 0,
           splashColor: Color.fromRGBO(248, 250, 251, 1),
           highlightColor: Color.fromRGBO(248, 250, 251, 1),
+<<<<<<< HEAD
           highlightElevation: 0,          
+=======
+          highlightElevation: 0,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondScreen()),
+            );
+          },
+>>>>>>> Employee
         ),
       ),
     );
