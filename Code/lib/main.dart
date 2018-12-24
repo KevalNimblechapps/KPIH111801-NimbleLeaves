@@ -6,15 +6,6 @@ void main() {
     debugShowMaterialGrid: false,
     debugShowCheckedModeBanner: false,
     title: 'Navigation Basics',
-    theme: ThemeData(
-      // Define the default Brightness and Colors
-      brightness: Brightness.dark,
-      primaryColor: Color.fromRGBO(248, 250, 251, 1),
-      accentColor: Color.fromRGBO(78, 125, 254, 1),
-
-      // Define the default Font Family
-      fontFamily: 'Montserrat',
-    ),
     home: FirstScreen(),
   ));
 }
@@ -26,7 +17,9 @@ class FirstScreen extends StatelessWidget {
       backgroundColor: Color.fromRGBO(248, 250, 251, 1),
       body: Center(
         child: RaisedButton(
-          child: Image.asset('images/login.png'),
+          child: MediaQuery.of(context).size.width <= 767
+              ? Image.asset('images/login.png')
+              : Image.asset('images/login-ipad.png'),
           color: Color.fromRGBO(248, 250, 251, 1),
           elevation: 0,
           splashColor: Color.fromRGBO(248, 250, 251, 1),

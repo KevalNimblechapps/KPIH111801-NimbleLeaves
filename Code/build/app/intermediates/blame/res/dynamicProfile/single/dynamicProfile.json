@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/drawable_launch_background.xml.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/drawable/launch_background.xml"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/res/merged/dynamicProfile/mipmap-ldpi_ic_launcher.png.flat",
+        "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/mipmap-ldpi/ic_launcher.png"
+    }
+]

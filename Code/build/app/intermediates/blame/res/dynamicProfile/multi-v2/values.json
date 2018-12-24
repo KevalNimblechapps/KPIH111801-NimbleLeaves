@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Applications/MAMP/htdocs/nimbleleaves/Code/build/app/intermediates/incremental/mergeDynamicProfileResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Applications/MAMP/htdocs/nimbleleaves/Code/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "347"
+                    }
+                }
+            ]
+        }
+    ]
+}
