@@ -15,151 +15,160 @@ class DrawerOnly extends StatelessWidget {
       return SizedBox(
           width: 72.0,
           child: new Drawer(
+              elevation: 0,
               child: new ListView(
-            children: <Widget>[
-              // new DrawerHeader(
-              //   child: IconButton(
-              //     icon: Icon(Icons.close),
-              //     color: Colors.blueGrey,
-              //   ),
-              //   decoration: new BoxDecoration(color: Colors.white),
-              // ),
-              Container(
-                height: 80.0,
-                decoration: BoxDecoration(),
-                child: DrawerHeader(
-                  child: IconButton(
-                      icon: Icon(Icons.close),
-                      color: inactive,
-                      onPressed: null),
-                  margin: EdgeInsets.only(bottom: 20),
-                  padding: EdgeInsets.only(bottom: 20),
-                ),
-              ),
+                children: <Widget>[
+                  // new DrawerHeader(
+                  //   child: IconButton(
+                  //     icon: Icon(Icons.close),
+                  //     color: Colors.blueGrey,
+                  //   ),
+                  //   decoration: new BoxDecoration(color: Colors.white),
+                  // ),
+                  Container(
+                    height: 80.0,
+                    decoration: BoxDecoration(),
+                    child: DrawerHeader(
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.close,
+                            color: inactive,
+                          ),
+                          iconSize: 36,
+                          onPressed: () {
+                            Navigator.of(ctxt).pop();
+                          }),
+                      margin: EdgeInsets.only(bottom: 20),
+                      padding: EdgeInsets.only(bottom: 20),
+                    ),
+                  ),
 
-              // new Divider(
-              //   color: Color.fromRGBO(237, 237, 237, 1),
-              // ),
-              new ListTile(
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.dashboard,
-                      color: inactive,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new FirstScreen()));
-                },
-              ),
-              new Divider(
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              new ListTile(
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.unplanned,
-                      color: inactive,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new SecondScreen()));
-                },
-              ),
-              new Divider(
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              new ListTile(
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.reports,
-                      color: inactive,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new SecondScreen()));
-                },
-              ),
-              new Divider(
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              new ListTile(
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.planned,
-                      color: inactive,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new SecondScreen()));
-                },
-              ),
-              new Divider(
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              new ListTile(
-                selected: true,
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.employee,
-                      color: kShrineBrown900,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new SecondScreen()));
-                },
-              ),
-              new Divider(
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              new ListTile(
-                title: IconButton(
-                    icon: Icon(
-                      CustomIcons.logout,
-                      color: inactive,
-                    ),
-                    iconSize: 36,
-                    onPressed: null,
-                    padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                onTap: () {
-                  Navigator.pop(ctxt);
-                  Navigator.push(
-                      ctxt,
-                      new MaterialPageRoute(
-                          builder: (ctxt) => new FirstScreen()));
-                },
-              ),
-            ],
-          )));
+                  // new Divider(
+                  //   color: Color.fromRGBO(237, 237, 237, 1),
+                  // ),
+                  new ListTile(
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.dashboard,
+                          color: inactive,
+                        ),
+                        iconSize: 36,
+                        onPressed: null,
+                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new FirstScreen()));
+                    },
+                  ),
+                  new Divider(
+                    color: Color.fromRGBO(237, 237, 237, 1),
+                  ),
+                  new ListTile(
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.unplanned,
+                          color: inactive,
+                        ),
+                        iconSize: 36,
+                        onPressed: null,
+                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new SecondScreen()));
+                    },
+                  ),
+                  new Divider(
+                    color: Color.fromRGBO(237, 237, 237, 1),
+                  ),
+                  new ListTile(
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.reports,
+                          color: inactive,
+                        ),
+                        iconSize: 36,
+                        onPressed: null,
+                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new SecondScreen()));
+                    },
+                  ),
+                  new Divider(
+                    color: Color.fromRGBO(237, 237, 237, 1),
+                  ),
+                  new ListTile(
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.planned,
+                          color: inactive,
+                        ),
+                        iconSize: 36,
+                        onPressed: null,
+                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new SecondScreen()));
+                    },
+                  ),
+                  new Divider(
+                    color: Color.fromRGBO(237, 237, 237, 1),
+                  ),
+                  new ListTile(
+                    selected: true,
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.employee,
+                          color: kShrineBrown900,
+                        ),
+                        iconSize: 36,
+                        onPressed: null,
+                        padding: EdgeInsets.only(
+                            right: 12.0,
+                            left: 1.0,
+                            bottom: MediaQuery.of(ctxt).size.height * 0.33)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new SecondScreen()));
+                    },
+                  ),
+                  new Divider(
+                    color: Color.fromRGBO(237, 237, 237, 1),
+                  ),
+                  new ListTile(
+                    title: IconButton(
+                        icon: Icon(
+                          CustomIcons.logout,
+                          color: inactive,
+                        ),
+                        iconSize: 38,
+                        onPressed: null,
+                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
+                    onTap: () {
+                      Navigator.pop(ctxt);
+                      Navigator.push(
+                          ctxt,
+                          new MaterialPageRoute(
+                              builder: (ctxt) => new FirstScreen()));
+                    },
+                  ),
+                ],
+              )));
     } else if (width >= 768 && width <= 1023) {
       return ListView(
         // This next line does the trick.
@@ -232,7 +241,7 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee,
+                  CustomIcons.employee_inactive,
                   color: inactive,
                 ),
                 iconSize: 28,
@@ -282,6 +291,8 @@ class DrawerOnly extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     textDirection: TextDirection.ltr,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
                     // Replace with a Row for horizontal icon + text
                     children: <Widget>[
                       Icon(
@@ -352,7 +363,7 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee,
+                  CustomIcons.employee_inactive,
                   color: inactive,
                 ),
                 iconSize: 28,

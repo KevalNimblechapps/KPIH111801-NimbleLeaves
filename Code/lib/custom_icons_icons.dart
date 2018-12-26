@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-///
+/// 
 ///
 import 'package:flutter/widgets.dart';
 
@@ -21,13 +21,12 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
 
   static const IconData menunew = const IconData(0xe800, fontFamily: _kFontFam);
-  static const IconData dashboard =
-      const IconData(0xe802, fontFamily: _kFontFam);
-  static const IconData employee =
-      const IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData planned = const IconData(0xe805, fontFamily: _kFontFam);
+  static const IconData logout = const IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData dashboard = const IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData employee = const IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData employee_inactive = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData filter = const IconData(0xe805, fontFamily: _kFontFam);
   static const IconData reports = const IconData(0xe806, fontFamily: _kFontFam);
-  static const IconData unplanned =
-      const IconData(0xe807, fontFamily: _kFontFam);
-  static const IconData logout = const IconData(0xe808, fontFamily: _kFontFam);
+  static const IconData unplanned = const IconData(0xe807, fontFamily: _kFontFam);
+  static const IconData planned = const IconData(0xe808, fontFamily: _kFontFam);
 }
