@@ -26,26 +26,39 @@ class DrawerOnly extends StatelessWidget {
                   //   decoration: new BoxDecoration(color: Colors.white),
                   // ),
                   Container(
-                    height: 80.0,
-                    decoration: BoxDecoration(),
+                    height: 50.0,
                     child: DrawerHeader(
+                      decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                          width: 0.0,
+                          color: Colors.transparent,
+                        )),
+                      ),
                       child: IconButton(
+                          alignment: Alignment.centerLeft,
                           icon: Icon(
                             Icons.close,
                             color: inactive,
                           ),
-                          iconSize: 36,
+                          iconSize: 38,
                           onPressed: () {
                             Navigator.of(ctxt).pop();
                           }),
-                      margin: EdgeInsets.only(bottom: 20),
-                      padding: EdgeInsets.only(bottom: 20),
+                      margin: EdgeInsets.only(bottom: 5, left: 9),
+                      padding: const EdgeInsets.only(
+                        bottom: 0,
+                      ),
                     ),
                   ),
 
                   // new Divider(
                   //   color: Color.fromRGBO(237, 237, 237, 1),
                   // ),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(color: Color.fromRGBO(237, 237, 237, 1)),
+                  ),
                   new ListTile(
                     title: IconButton(
                         icon: Icon(
@@ -63,9 +76,13 @@ class DrawerOnly extends StatelessWidget {
                               builder: (ctxt) => new FirstScreen()));
                     },
                   ),
-                  new Divider(
-                    color: Color.fromRGBO(237, 237, 237, 1),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(
+                      color: Color.fromRGBO(237, 237, 237, 1),
+                    ),
                   ),
+
                   new ListTile(
                     title: IconButton(
                         icon: Icon(
@@ -83,8 +100,11 @@ class DrawerOnly extends StatelessWidget {
                               builder: (ctxt) => new SecondScreen()));
                     },
                   ),
-                  new Divider(
-                    color: Color.fromRGBO(237, 237, 237, 1),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(
+                      color: Color.fromRGBO(237, 237, 237, 1),
+                    ),
                   ),
                   new ListTile(
                     title: IconButton(
@@ -103,8 +123,11 @@ class DrawerOnly extends StatelessWidget {
                               builder: (ctxt) => new SecondScreen()));
                     },
                   ),
-                  new Divider(
-                    color: Color.fromRGBO(237, 237, 237, 1),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(
+                      color: Color.fromRGBO(237, 237, 237, 1),
+                    ),
                   ),
                   new ListTile(
                     title: IconButton(
@@ -123,8 +146,11 @@ class DrawerOnly extends StatelessWidget {
                               builder: (ctxt) => new SecondScreen()));
                     },
                   ),
-                  new Divider(
-                    color: Color.fromRGBO(237, 237, 237, 1),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(
+                      color: Color.fromRGBO(237, 237, 237, 1),
+                    ),
                   ),
                   new ListTile(
                     selected: true,
@@ -136,9 +162,9 @@ class DrawerOnly extends StatelessWidget {
                         iconSize: 36,
                         onPressed: null,
                         padding: EdgeInsets.only(
-                            right: 12.0,
-                            left: 1.0,
-                            bottom: MediaQuery.of(ctxt).size.height * 0.33)),
+                          right: 12.0,
+                          left: 1.0,
+                        )),
                     onTap: () {
                       Navigator.pop(ctxt);
                       Navigator.push(
@@ -147,8 +173,11 @@ class DrawerOnly extends StatelessWidget {
                               builder: (ctxt) => new SecondScreen()));
                     },
                   ),
-                  new Divider(
-                    color: Color.fromRGBO(237, 237, 237, 1),
+                  new Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: new Divider(
+                      color: Color.fromRGBO(237, 237, 237, 1),
+                    ),
                   ),
                   new ListTile(
                     title: IconButton(
@@ -156,7 +185,7 @@ class DrawerOnly extends StatelessWidget {
                           CustomIcons.logout,
                           color: inactive,
                         ),
-                        iconSize: 38,
+                        iconSize: 42,
                         onPressed: null,
                         padding: EdgeInsets.only(right: 12.0, left: 1.0)),
                     onTap: () {
@@ -241,8 +270,8 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee_inactive,
-                  color: inactive,
+                  CustomIcons.employee,
+                  color: active,
                 ),
                 iconSize: 28,
                 onPressed: () {
@@ -261,7 +290,7 @@ class DrawerOnly extends StatelessWidget {
                   CustomIcons.logout,
                   color: inactive,
                 ),
-                iconSize: 28,
+                iconSize: 32,
                 onPressed: () {
                   Navigator.pop(ctxt);
                   Navigator.push(
@@ -363,8 +392,8 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee_inactive,
-                  color: inactive,
+                  CustomIcons.employee,
+                  color: active,
                 ),
                 iconSize: 28,
                 onPressed: () {

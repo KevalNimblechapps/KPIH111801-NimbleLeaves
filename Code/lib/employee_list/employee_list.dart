@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nimble_leaves/custom_icons_icons.dart';
+import 'package:nimble_leaves/employee_list/add_employee.dart';
 import 'package:nimble_leaves/menu/menu.dart';
 import 'package:material_search/material_search.dart';
 
@@ -19,42 +20,42 @@ class SecondScreen extends StatelessWidget {
     'John Scott',
     'Daniel Nadasi',
   ];
-  String _name = 'No one';
+  // String _name = 'No one';
   final _formKey = new GlobalKey<FormState>();
-  _buildMaterialSearchPage(BuildContext context) {
-    return new MaterialPageRoute<String>(
-        settings: new RouteSettings(
-          name: 'material_search',
-          isInitialRoute: true,
-        ),
-        builder: (BuildContext context) {
-          return new Material(
-            child: new MaterialSearch<String>(
-              placeholder: 'Search',
-              results: _names
-                  .map((String v) => new MaterialSearchResult<String>(
-                        value: v,
-                        text: "Mr(s). $v",
-                      ))
-                  .toList(),
-              filter: (dynamic value, String criteria) {
-                return value.toLowerCase().trim().contains(
-                    new RegExp(r'' + criteria.toLowerCase().trim() + ''));
-              },
-              onSelect: (dynamic value) => Navigator.of(context).pop(value),
-              onSubmit: (String value) => Navigator.of(context).pop(value),
-            ),
-          );
-        });
-  }
+  // _buildMaterialSearchPage(BuildContext context) {
+  //   return new MaterialPageRoute<String>(
+  //       settings: new RouteSettings(
+  //         name: 'material_search',
+  //         isInitialRoute: true,
+  //       ),
+  //       builder: (BuildContext context) {
+  //         return new Material(
+  //           child: new MaterialSearch<String>(
+  //             placeholder: 'Search',
+  //             results: _names
+  //                 .map((String v) => new MaterialSearchResult<String>(
+  //                       value: v,
+  //                       text: "Mr(s). $v",
+  //                     ))
+  //                 .toList(),
+  //             filter: (dynamic value, String criteria) {
+  //               return value.toLowerCase().trim().contains(
+  //                   new RegExp(r'' + criteria.toLowerCase().trim() + ''));
+  //             },
+  //             onSelect: (dynamic value) => Navigator.of(context).pop(value),
+  //             onSubmit: (String value) => Navigator.of(context).pop(value),
+  //           ),
+  //         );
+  //       });
+  // }
 
-  _showMaterialSearch(BuildContext context) {
-    Navigator.of(context)
-        .push(_buildMaterialSearchPage(context))
-        .then((dynamic value) {
-      // setState(() => _name = value as String);
-    });
-  }
+  // _showMaterialSearch(BuildContext context) {
+  //   Navigator.of(context)
+  //       .push(_buildMaterialSearchPage(context))
+  //       .then((dynamic value) {
+  //     // setState(() => _name = value as String);
+  //   });
+  // }
 
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -127,7 +128,7 @@ class SecondScreen extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 28),
+                    padding: EdgeInsets.only(right: 15),
                   )
                 ]),
       body: new Center(
@@ -135,67 +136,81 @@ class SecondScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             new Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-              child: new Form(
-                key: _formKey,
-                child: Row(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 15.0),
+                child: new Row(
                   children: <Widget>[
                     new Container(
-                        padding:
-                            const EdgeInsets.only(left: 10, top: 4, bottom: 3),
-                        decoration: new BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              new BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 4.0,
-                              ),
-                            ],
-                            borderRadius: new BorderRadius.circular(5)),
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 4, bottom: 3),
+                      decoration: new BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            new BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 4.0,
+                            ),
+                          ],
+                          borderRadius: new BorderRadius.circular(5)),
+                      width: MediaQuery.of(context).size.width < 767
+                          ? MediaQuery.of(context).size.width * 0.76
+                          : MediaQuery.of(context).size.width * 0.88,
+                      child: new Form(
+                        key: _formKey,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            new Icon(
-                              Icons.search,
-                              color: greydark,
-                            ),
-                            new SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.67,
-                              child:
-                                  //  new TextField(
-                                  //   keyboardType: TextInputType.text,
-                                  //   decoration: new InputDecoration(
-                                  //     border: InputBorder.none,
-                                  //     hintText: 'Search',
-                                  //   ),
-                                  // ),
+                            new Container(
+                                child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Icon(
+                                  Icons.search,
+                                  color: greydark,
+                                ),
+                                new SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child:
+                                      //  new TextField(
+                                      //   keyboardType: TextInputType.text,
+                                      //   decoration: new InputDecoration(
+                                      //     border: InputBorder.none,
+                                      //     hintText: 'Search',
+                                      //   ),
+                                      // ),
 
-                                  new MaterialSearchInput<String>(
-                                placeholder: ' Search',
-                                results: _names
-                                    .map((String v) =>
-                                        new MaterialSearchResult<String>(
-                                          value: v,
-                                          text: "Mr(s). $v",
-                                        ))
-                                    .toList(),
-                                filter: (dynamic value, String criteria) {
-                                  return value.toLowerCase().trim().contains(
-                                      new RegExp(r'' +
-                                          criteria.toLowerCase().trim() +
-                                          ''));
-                                },
-                                onSelect: (dynamic v) {
-                                  print(v);
-                                },
-                                validator: (dynamic value) =>
-                                    value == null ? 'Required field' : null,
-                                formatter: (dynamic v) => 'Hello, $v',
-                              ),
-                            )
+                                      new MaterialSearchInput<String>(
+                                    placeholder: ' Search',
+                                    results: _names
+                                        .map((String v) =>
+                                            new MaterialSearchResult<String>(
+                                              value: v,
+                                              text: "Mr(s). $v",
+                                            ))
+                                        .toList(),
+                                    filter: (dynamic value, String criteria) {
+                                      return value
+                                          .toLowerCase()
+                                          .trim()
+                                          .contains(new RegExp(r'' +
+                                              criteria.toLowerCase().trim() +
+                                              ''));
+                                    },
+                                    onSelect: (dynamic v) {
+                                      print(v);
+                                    },
+                                    validator: (dynamic value) =>
+                                        value == null ? 'Required field' : null,
+                                    formatter: (dynamic v) => 'Hello, $v',
+                                  ),
+                                )
+                              ],
+                            )),
                           ],
-                        )),
+                        ),
+                      ),
+                    ),
                     new Container(
                         margin: const EdgeInsets.only(left: 10, right: 0),
                         decoration: new BoxDecoration(
@@ -215,9 +230,7 @@ class SecondScreen extends StatelessWidget {
                           onPressed: null,
                         ))
                   ],
-                ),
-              ),
-            ),
+                )),
             new Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 00.0, horizontal: 00.0),
@@ -243,38 +256,7 @@ class SecondScreen extends StatelessWidget {
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          showDialog(
-              context: context,
-              child: new SimpleDialog(
-                title: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    new Text(
-                      "Add Employee",
-                      style: TextStyle(
-                          color: greydark,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          height: 0.8,
-                          fontFamily: 'SairaSemiCondensed'),
-                    ),
-                    SimpleDialogOption(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: new Icon(Icons.close, size: 24, color: greydark),
-                    ),
-                  ],
-                ),
-                children: <Widget>[
-                  SimpleDialogOption(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Treasury department'),
-                  ),
-                ],
-              ));
+          showDialog(context: context, child: new AddEmployee());
         },
         tooltip: 'Add',
         child: new Icon(Icons.add),
