@@ -152,9 +152,10 @@ class SecondScreen extends StatelessWidget {
                             ),
                           ],
                           borderRadius: new BorderRadius.circular(5)),
-                      width: MediaQuery.of(context).size.width < 767
-                          ? MediaQuery.of(context).size.width * 0.76
-                          : MediaQuery.of(context).size.width * 0.88,
+                      width: getwidth(context),
+                      // MediaQuery.of(context).size.width < 767
+                      //     ? MediaQuery.of(context).size.width * 0.76
+                      //     : MediaQuery.of(context).size.width * 0.88,
                       child: new Form(
                         key: _formKey,
                         child: Row(
@@ -263,5 +264,16 @@ class SecondScreen extends StatelessWidget {
         backgroundColor: active,
       ),
     );
+  }
+
+  double getwidth(BuildContext context) {
+    if (MediaQuery.of(context).size.width <= 767) {
+      return MediaQuery.of(context).size.width * 0.76;
+    } else if (MediaQuery.of(context).size.width >= 767 &&
+        MediaQuery.of(context).size.width <= 1023) {
+      return MediaQuery.of(context).size.width * 0.88;
+    } else {
+      return MediaQuery.of(context).size.width * 0.912;
+    }
   }
 }

@@ -12,192 +12,211 @@ class DrawerOnly extends StatelessWidget {
   Widget build(BuildContext ctxt) {
     double width = MediaQuery.of(ctxt).size.width;
     if (width <= 767) {
-      return SizedBox(
-          width: 72.0,
-          child: new Drawer(
-              elevation: 0,
-              child: new ListView(
-                children: <Widget>[
-                  // new DrawerHeader(
-                  //   child: IconButton(
-                  //     icon: Icon(Icons.close),
-                  //     color: Colors.blueGrey,
-                  //   ),
-                  //   decoration: new BoxDecoration(color: Colors.white),
-                  // ),
-                  Container(
-                    height: 50.0,
-                    child: DrawerHeader(
-                      decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                          width: 0.0,
-                          color: Colors.transparent,
+      return Padding(
+        padding: EdgeInsets.only(top: 40),
+        child: Container(
+          width: 65.0,
+          decoration: new BoxDecoration(boxShadow: [
+            new BoxShadow(
+              color: Colors.grey[400],
+              blurRadius: 10.0,
+            ),
+          ]),
+
+          // height: MediaQuery.of(ctxt).size.height * 0.97,
+          child: new LayoutBuilder(
+            builder: (context, constraints) => Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    new Drawer(
+                        elevation: 0,
+                        child: new ListView(
+                          padding: EdgeInsets.zero,
+                          children: <Widget>[
+                            new Container(
+                              height: 65,
+                              child: new DrawerHeader(
+                                padding: EdgeInsets.all(0),
+                                margin: EdgeInsets.all(0),
+                                child: IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: Icon(
+                                      Icons.close,
+                                      color: inactive,
+                                    ),
+                                    iconSize: 38,
+                                    onPressed: () {
+                                      Navigator.of(ctxt).pop();
+                                    }),
+                              ),
+                            ),
+                            // new ListTile(
+                            //   title: IconButton(
+                            //       alignment: Alignment.centerLeft,
+                            //       padding:
+                            //           EdgeInsets.only(right: 12.0, left: 1.0),
+                            //       icon: Icon(
+                            //         Icons.close,
+                            //         color: inactive,
+                            //       ),
+                            //       iconSize: 38,
+                            //       onPressed: () {
+                            //         Navigator.of(ctxt).pop();
+                            //       }),
+                            // ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                  color: Color.fromRGBO(237, 237, 237, 1)),
+                            ),
+                            new ListTile(
+                              title: IconButton(
+                                  icon: Icon(
+                                    CustomIcons.dashboard,
+                                    color: inactive,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding:
+                                      EdgeInsets.only(right: 12.0, left: 1.0)),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new FirstScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                            new ListTile(
+                              title: IconButton(
+                                  icon: Icon(
+                                    CustomIcons.unplanned,
+                                    color: inactive,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding:
+                                      EdgeInsets.only(right: 12.0, left: 1.0)),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new SecondScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                            new ListTile(
+                              title: IconButton(
+                                  icon: Icon(
+                                    CustomIcons.reports,
+                                    color: inactive,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding:
+                                      EdgeInsets.only(right: 12.0, left: 1.0)),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new SecondScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                            new ListTile(
+                              title: IconButton(
+                                  icon: Icon(
+                                    CustomIcons.planned,
+                                    color: inactive,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding:
+                                      EdgeInsets.only(right: 12.0, left: 1.0)),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new SecondScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                            new ListTile(
+                              selected: true,
+                              title: IconButton(
+                                  icon: Icon(
+                                    CustomIcons.employee,
+                                    color: kShrineBrown900,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding: EdgeInsets.only(
+                                    right: 12.0,
+                                    left: 1.0,
+                                  )),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new SecondScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                          ],
                         )),
-                      ),
+                    Positioned(
+                      bottom: 25,
+                      right: 13,
                       child: IconButton(
-                          alignment: Alignment.centerLeft,
                           icon: Icon(
-                            Icons.close,
+                            CustomIcons.logout,
                             color: inactive,
                           ),
-                          iconSize: 38,
+                          iconSize: 42,
                           onPressed: () {
-                            Navigator.of(ctxt).pop();
-                          }),
-                      margin: EdgeInsets.only(bottom: 5, left: 9),
-                      padding: const EdgeInsets.only(
-                        bottom: 0,
-                      ),
+                            Navigator.pop(ctxt);
+                            Navigator.push(
+                                ctxt,
+                                new MaterialPageRoute(
+                                    builder: (ctxt) => new FirstScreen()));
+                          },
+                          padding: EdgeInsets.only()),
                     ),
-                  ),
-
-                  // new Divider(
-                  //   color: Color.fromRGBO(237, 237, 237, 1),
-                  // ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(color: Color.fromRGBO(237, 237, 237, 1)),
-                  ),
-                  new ListTile(
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.dashboard,
-                          color: inactive,
-                        ),
-                        iconSize: 36,
-                        onPressed: null,
-                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new FirstScreen()));
-                    },
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(
-                      color: Color.fromRGBO(237, 237, 237, 1),
-                    ),
-                  ),
-
-                  new ListTile(
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.unplanned,
-                          color: inactive,
-                        ),
-                        iconSize: 36,
-                        onPressed: null,
-                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new SecondScreen()));
-                    },
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(
-                      color: Color.fromRGBO(237, 237, 237, 1),
-                    ),
-                  ),
-                  new ListTile(
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.reports,
-                          color: inactive,
-                        ),
-                        iconSize: 36,
-                        onPressed: null,
-                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new SecondScreen()));
-                    },
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(
-                      color: Color.fromRGBO(237, 237, 237, 1),
-                    ),
-                  ),
-                  new ListTile(
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.planned,
-                          color: inactive,
-                        ),
-                        iconSize: 36,
-                        onPressed: null,
-                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new SecondScreen()));
-                    },
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(
-                      color: Color.fromRGBO(237, 237, 237, 1),
-                    ),
-                  ),
-                  new ListTile(
-                    selected: true,
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.employee,
-                          color: kShrineBrown900,
-                        ),
-                        iconSize: 36,
-                        onPressed: null,
-                        padding: EdgeInsets.only(
-                          right: 12.0,
-                          left: 1.0,
-                        )),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new SecondScreen()));
-                    },
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: new Divider(
-                      color: Color.fromRGBO(237, 237, 237, 1),
-                    ),
-                  ),
-                  new ListTile(
-                    title: IconButton(
-                        icon: Icon(
-                          CustomIcons.logout,
-                          color: inactive,
-                        ),
-                        iconSize: 42,
-                        onPressed: null,
-                        padding: EdgeInsets.only(right: 12.0, left: 1.0)),
-                    onTap: () {
-                      Navigator.pop(ctxt);
-                      Navigator.push(
-                          ctxt,
-                          new MaterialPageRoute(
-                              builder: (ctxt) => new FirstScreen()));
-                    },
-                  ),
-                ],
-              )));
+                  ],
+                ),
+          ),
+        ),
+      );
     } else if (width >= 768 && width <= 1023) {
       return ListView(
         // This next line does the trick.

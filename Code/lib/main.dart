@@ -2,13 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:nimble_leaves/employee_list/employee_list.dart';
 
 const active = const Color.fromRGBO(78, 125, 254, 1);
-void main() {
-  runApp(MaterialApp(
-    debugShowMaterialGrid: false,
-    debugShowCheckedModeBanner: false,
-    title: 'Navigation Basics',
-    home: FirstScreen(),
-  ));
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // Set Raleway as the default app font
+      theme: ThemeData(
+        fontFamily: 'SairaSemiCondensed',
+        textTheme: TextTheme(
+          headline: TextStyle(
+            fontSize: 18.0,
+          ),
+          title: TextStyle(
+            fontSize: 16.0,
+          ),
+          body1: TextStyle(
+            fontSize: 14.0,
+          ),
+        ),
+      ),
+
+      home: FirstScreen(),
+    );
+  }
 }
 
 class FirstScreen extends StatelessWidget {

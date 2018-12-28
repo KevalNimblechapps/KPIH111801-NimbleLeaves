@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 const active = const Color.fromRGBO(78, 125, 254, 1);
 const greydark = const Color.fromRGBO(119, 140, 161, 1);
 const greylight = const Color.fromRGBO(193, 193, 193, 1);
+const greymedium = const Color.fromRGBO(216, 216, 216, 1);
+const pink = const Color.fromRGBO(252, 77, 149, 1);
 
 class AddEmployee extends StatefulWidget {
   @override
@@ -90,8 +92,8 @@ class _AddEmployeeState extends State<AddEmployee> {
         ),
         children: <Widget>[
           new Container(
-              padding: new EdgeInsets.only(
-                  top: 5.0, left: 15, right: 15, bottom: 10),
+              padding:
+                  new EdgeInsets.only(top: 5.0, left: 0, right: 0, bottom: 10),
               child: new Form(
                 key: _formKey,
                 autovalidate: _autoValidate,
@@ -102,18 +104,29 @@ class _AddEmployeeState extends State<AddEmployee> {
                       initialValue: '005',
                       enabled: false, // Use email input type for emails.
                       decoration: new InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 15),
                           hintText: '005',
                           labelText: 'Code',
-                          suffixIcon: Icon(
+                          suffix: new Icon(
                             Icons.block,
-                            size: 21,
+                            size: 16,
                             color: greylight,
                           ),
-                          labelStyle: new TextStyle(color: Colors.grey),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.green, width: 3.0),
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
                           ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
                           hintStyle: TextStyle(color: Colors.grey)),
                       validator: (String value) {
                         return value.contains('@')
@@ -125,13 +138,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                       keyboardType: TextInputType
                           .text, // Use email input type for emails.
                       decoration: new InputDecoration(
-                        hintText: '',
-                        labelText: 'Full Name',
-                        labelStyle: new TextStyle(color: Colors.grey),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 15),
+                          hintText: '',
+                          labelText: 'Full Name',
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorStyle: TextStyle(
+                            color: pink,
+                            fontSize: 12,
+                          )),
                       validator: validateName,
                       onSaved: (String val) {
                         _name = val;
@@ -141,13 +172,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                       keyboardType: TextInputType
                           .emailAddress, // Use email input type for emails.
                       decoration: new InputDecoration(
-                        hintText: '',
-                        labelText: 'Email ID',
-                        labelStyle: new TextStyle(color: Colors.grey),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 15),
+                          hintText: '',
+                          labelText: 'Email ID',
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorStyle: TextStyle(
+                            color: pink,
+                            fontSize: 12,
+                          )),
                       validator: validateEmail,
                       onSaved: (String val) {
                         _email = val;
@@ -161,14 +210,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                             keyboardType: null,
                             initialValue: _value,
                             decoration: new InputDecoration(
-                              hintText: '',
-                              labelText: 'Date of Birth',
-                              labelStyle: new TextStyle(color: Colors.grey),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: Colors.grey),
-                              ),
-                            ),
+                                contentPadding: EdgeInsets.only(
+                                    top: 10, left: 15, right: 15),
+                                hintText: '',
+                                labelText: 'Date of Birth',
+                                labelStyle: new TextStyle(
+                                    color: greylight,
+                                    fontSize: 16,
+                                    fontFamily: 'SairaSemiCondensed'),
+                                enabledBorder: const UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                errorStyle: TextStyle(
+                                  color: pink,
+                                  fontSize: 12,
+                                )),
                             validator: validateDOB,
                             onSaved: (String val) {
                               _value = val;
@@ -179,13 +245,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                       keyboardType: TextInputType
                           .emailAddress, // Use email input type for emails.
                       decoration: new InputDecoration(
-                        hintText: '',
-                        labelText: 'Spouse Name',
-                        labelStyle: new TextStyle(color: Colors.grey),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 15),
+                          hintText: '',
+                          labelText: 'Spouse Name',
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorStyle: TextStyle(
+                            color: pink,
+                            fontSize: 12,
+                          )),
                       validator: validateSpouseName,
                       onSaved: (String val) {
                         _sname = val;
@@ -195,13 +279,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                       keyboardType: TextInputType
                           .emailAddress, // Use email input type for emails.
                       decoration: new InputDecoration(
-                        hintText: '',
-                        labelText: 'Spouse DOB',
-                        labelStyle: new TextStyle(color: Colors.grey),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 15),
+                          hintText: '',
+                          labelText: 'Spouse DOB',
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorStyle: TextStyle(
+                            color: pink,
+                            fontSize: 12,
+                          )),
                       validator: validateSpouseDOB,
                       onSaved: (String val) {
                         _svalue = val;
@@ -210,12 +312,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                     new Align(
                         alignment: Alignment.centerRight,
                         child: new Padding(
-                          padding: EdgeInsets.only(top: 7, bottom: 0),
+                          padding:
+                              EdgeInsets.only(top: 7, bottom: 0, right: 15),
                           child: RaisedButton(
                             onPressed: _validateInputs,
                             color: active,
                             textColor: Colors.white,
-                            child: new Text('Save'),
+                            child: new Text('Save',
+                                style: new TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'SairaSemiCondensed')),
                           ),
                         )),
 
