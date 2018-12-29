@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
 // void main() => runApp(new MaterialApp(
 //       title: 'Forms in Flutter',
@@ -16,11 +18,6 @@ class AddEmployee extends StatefulWidget {
   State<StatefulWidget> createState() => new _AddEmployeeState();
 }
 
-class _LoginData {
-  String email = '';
-  String password = '';
-}
-
 class _AddEmployeeState extends State<AddEmployee> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
@@ -29,18 +26,11 @@ class _AddEmployeeState extends State<AddEmployee> {
   String _sname;
   String _svalue;
   String _value = '';
-
+  String _valuedob = '';
+  DateTime date;
+  final dateFormat = DateFormat("MMMM d, yyyy");
   @override
   Widget build(BuildContext context) {
-    Future _selectDate() async {
-      DateTime picked = await showDatePicker(
-          context: context,
-          initialDate: new DateTime.now(),
-          firstDate: new DateTime(2016),
-          lastDate: new DateTime(2019));
-      if (picked != null) setState(() => _value = picked.toString());
-    }
-
     return new SimpleDialog(
         contentPadding: EdgeInsets.all(0.0),
         titlePadding: EdgeInsets.all(0),
@@ -52,8 +42,9 @@ class _AddEmployeeState extends State<AddEmployee> {
               color: Colors.white,
               boxShadow: [
                 new BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4.0,
+                  color: Colors.grey[200],
+                  offset: Offset(0.0, 2.0),
+                  blurRadius: 8.0,
                 ),
               ],
               borderRadius: BorderRadius.circular(3)),
@@ -202,45 +193,40 @@ class _AddEmployeeState extends State<AddEmployee> {
                         _email = val;
                       },
                     ),
-
-                    GestureDetector(
-                        onTap: _selectDate,
-                        child: AbsorbPointer(
-                          child: new TextFormField(
-                            keyboardType: null,
-                            initialValue: _value,
-                            decoration: new InputDecoration(
-                                contentPadding: EdgeInsets.only(
-                                    top: 10, left: 15, right: 15),
-                                hintText: '',
-                                labelText: 'Date of Birth',
-                                labelStyle: new TextStyle(
-                                    color: greylight,
-                                    fontSize: 16,
-                                    fontFamily: 'SairaSemiCondensed'),
-                                enabledBorder: const UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: greymedium, width: 0.8),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                errorStyle: TextStyle(
-                                  color: pink,
-                                  fontSize: 12,
-                                )),
-                            validator: validateDOB,
-                            onSaved: (String val) {
-                              _value = val;
-                            },
+                    DateTimePickerFormField(
+                      format: dateFormat,
+                      validator: (dt) =>
+                          date == null ? 'DOB is required' : null,
+                      dateOnly: true,
+                      decoration: new InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(top: 10, left: 15, right: 0),
+                          hintText: '',
+                          labelText: 'Date of Birth',
+                          labelStyle: new TextStyle(
+                              color: greylight,
+                              fontSize: 16,
+                              fontFamily: 'SairaSemiCondensed'),
+                          enabledBorder: const UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: greymedium, width: 0.8),
                           ),
-                        )),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
+                          errorStyle: TextStyle(
+                            color: pink,
+                            fontSize: 12,
+                          )),
+                      onChanged: (dt) => setState(() => date = dt),
+                    ),
+
                     new TextFormField(
                       keyboardType: TextInputType
                           .emailAddress, // Use email input type for emails.
@@ -275,12 +261,14 @@ class _AddEmployeeState extends State<AddEmployee> {
                         _sname = val;
                       },
                     ),
-                    new TextFormField(
-                      keyboardType: TextInputType
-                          .emailAddress, // Use email input type for emails.
+                    DateTimePickerFormField(
+                      format: dateFormat,
+                      validator: (dt) =>
+                          date == null ? 'Spouse DOB is required' : null,
+                      dateOnly: true,
                       decoration: new InputDecoration(
                           contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 15),
+                              EdgeInsets.only(top: 10, left: 15, right: 0),
                           hintText: '',
                           labelText: 'Spouse DOB',
                           labelStyle: new TextStyle(
@@ -290,9 +278,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                           enabledBorder: const UnderlineInputBorder(
                               borderSide: const BorderSide(
                                   color: greymedium, width: 0.8)),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
                           focusedBorder: const UnderlineInputBorder(
                             borderSide:
                                 const BorderSide(color: greymedium, width: 0.8),
@@ -300,15 +285,16 @@ class _AddEmployeeState extends State<AddEmployee> {
                           errorBorder: UnderlineInputBorder(
                               borderSide: const BorderSide(
                                   color: greymedium, width: 0.8)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: greymedium, width: 0.8)),
                           errorStyle: TextStyle(
                             color: pink,
                             fontSize: 12,
                           )),
-                      validator: validateSpouseDOB,
-                      onSaved: (String val) {
-                        _svalue = val;
-                      },
+                      onChanged: (dt) => setState(() => date = dt),
                     ),
+
                     new Align(
                         alignment: Alignment.centerRight,
                         child: new Padding(

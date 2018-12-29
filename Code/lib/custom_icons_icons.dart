@@ -29,4 +29,5 @@ class CustomIcons {
   static const IconData reports = const IconData(0xe806, fontFamily: _kFontFam);
   static const IconData unplanned = const IconData(0xe807, fontFamily: _kFontFam);
   static const IconData planned = const IconData(0xe808, fontFamily: _kFontFam);
+  static const IconData add = const IconData(0xe809, fontFamily: _kFontFam);
 }

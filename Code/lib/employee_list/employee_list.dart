@@ -260,7 +260,7 @@ class SecondScreen extends StatelessWidget {
           showDialog(context: context, child: new AddEmployee());
         },
         tooltip: 'Add',
-        child: new Icon(Icons.add),
+        child: new Icon(CustomIcons.add),
         backgroundColor: active,
       ),
     );
