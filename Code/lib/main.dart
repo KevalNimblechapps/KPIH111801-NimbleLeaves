@@ -46,7 +46,7 @@ class FirstScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // Replace with a Row for horizontal icon + text
             children: <Widget>[
-              Image.asset('images/g.png'),
+              Image.asset('images/g.png', height: 22, width: 22),
               Text(
                 "Log in with Google",
                 textAlign: TextAlign.left,

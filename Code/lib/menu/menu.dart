@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nimble_leaves/employee_list/employee_list.dart';
 import 'package:nimble_leaves/main.dart';
 import 'package:nimble_leaves/custom_icons_icons.dart';
+import 'package:nimble_leaves/suceessful_msg/success.dart';
 
 const kShrineBrown900 = const Color.fromRGBO(78, 125, 254, 1);
 const inactive = const Color.fromRGBO(119, 140, 161, 1);
@@ -84,7 +85,7 @@ class DrawerOnly extends StatelessWidget {
                                 Navigator.push(
                                     ctxt,
                                     new MaterialPageRoute(
-                                        builder: (ctxt) => new FirstScreen()));
+                                        builder: (ctxt) => new SecondScreen()));
                               },
                             ),
                             new Padding(
@@ -196,7 +197,7 @@ class DrawerOnly extends StatelessWidget {
                         )),
                     Positioned(
                       bottom: 25,
-                      right: 13,
+                      right: 8,
                       child: IconButton(
                           icon: Icon(
                             CustomIcons.logout,

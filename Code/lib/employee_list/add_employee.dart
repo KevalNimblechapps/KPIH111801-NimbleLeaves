@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 
-// void main() => runApp(new MaterialApp(
-//       title: 'Forms in Flutter',
-//       home: new LoginPage(),
-//     ));
-
 const active = const Color.fromRGBO(78, 125, 254, 1);
 const greydark = const Color.fromRGBO(119, 140, 161, 1);
 const greylight = const Color.fromRGBO(193, 193, 193, 1);
@@ -302,6 +297,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               EdgeInsets.only(top: 7, bottom: 0, right: 15),
                           child: RaisedButton(
                             onPressed: _validateInputs,
+                            // _validateInputs,
                             color: active,
                             textColor: Colors.white,
                             child: new Text('Save',

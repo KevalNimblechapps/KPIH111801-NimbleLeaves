@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:nimble_leaves/custom_icons_icons.dart';
 import 'package:nimble_leaves/employee_list/add_employee.dart';
@@ -6,6 +7,7 @@ import 'package:material_search/material_search.dart';
 
 const active = const Color.fromRGBO(78, 125, 254, 1);
 const greydark = const Color.fromRGBO(119, 140, 161, 1);
+const greylight = const Color.fromRGBO(237, 237, 237, 1);
 
 class SecondScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -20,6 +22,8 @@ class SecondScreen extends StatelessWidget {
     'John Scott',
     'Daniel Nadasi',
   ];
+  Flushbar flush;
+  bool _wasButtonClicked;
   // String _name = 'No one';
   final _formKey = new GlobalKey<FormState>();
   // _buildMaterialSearchPage(BuildContext context) {
@@ -228,7 +232,53 @@ class SecondScreen extends StatelessWidget {
                             CustomIcons.filter,
                             color: greydark,
                           ),
-                          onPressed: null,
+                          onPressed: () {
+                            Flushbar(
+                              flushbarPosition: FlushbarPosition.TOP,
+                              aroundPadding: 0,
+                              borderRadius: 5,
+                            )
+                              ..title = null
+                              ..titleText = null
+                              ..messageText = Text(
+                                'Unplanned leave edited successfully.',
+                                style: TextStyle(
+                                    color: greydark,
+                                    height: 0.8,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    fontFamily: 'SairaSemiCondensed'),
+                              )
+                              ..duration = Duration(seconds: 4)
+                              ..icon = Icon(
+                                Icons.check_circle_outline,
+                                color: greydark,
+                                size: 16,
+                              )
+                              ..mainButton = FlatButton(
+                                onPressed: () {
+                                  flush.dismiss(true); // result = true
+                                },
+                                child: Text(
+                                  "Close",
+                                  style: TextStyle(
+                                      color: greydark,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      fontFamily: 'SairaSemiCondensed'),
+                                ),
+                              )
+                              ..backgroundColor =
+                                  Color.fromRGBO(255, 255, 255, 0.5)
+                              ..isDismissible = true
+                              ..shadowColor = Colors.grey[200]
+                              ..showProgressIndicator = true
+                              ..progressIndicatorBackgroundColor = active
+                              ..show(context).then((result) {
+                                // setState() is optional here
+                                _wasButtonClicked = result;
+                              });
+                          },
                         ))
                   ],
                 )),
