@@ -13,18 +13,37 @@ class AddEmployee extends StatefulWidget {
   State<StatefulWidget> createState() => new _AddEmployeeState();
 }
 
+enum FormType { addEmployee }
+
 class _AddEmployeeState extends State<AddEmployee> {
+  TextEditingController _controller;
+  var txt = new TextEditingController();
+  var txt1 = new TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
-  String _name;
-  String _email;
-  String _sname;
-  String _svalue;
+  String _code = "005";
+  String _codeerror = "";
+  String _name = "";
+  String _nameerror = "";
+  String _email = "";
+  String _emailerror = "";
+  String _sname = "";
+  String _snameerror = "";
+  String _svalue = "";
+  String _svalueerror = "";
   String _value = '';
   String _valuedob = '';
+  String _valuedoberror = '';
+  FormType _formType = FormType.addEmployee;
   DateTime date;
   final dateFormat = DateFormat("MMMM d, yyyy");
+
   @override
+  void initState() {
+    super.initState();
+    _controller = new TextEditingController(text: '005');
+  }
+
   Widget build(BuildContext context) {
     return new SimpleDialog(
         contentPadding: EdgeInsets.all(0.0),
@@ -80,241 +99,509 @@ class _AddEmployeeState extends State<AddEmployee> {
           new Container(
               padding:
                   new EdgeInsets.only(top: 5.0, left: 0, right: 0, bottom: 10),
-              child: new Form(
-                key: _formKey,
-                autovalidate: _autoValidate,
-                child: new Column(
-                  children: <Widget>[
-                    new TextFormField(
-                      keyboardType: TextInputType.number,
-                      initialValue: '005',
-                      enabled: false, // Use email input type for emails.
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 15),
-                          hintText: '005',
-                          labelText: 'Code',
-                          suffix: new Icon(
-                            Icons.block,
-                            size: 16,
-                            color: greylight,
-                          ),
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          hintStyle: TextStyle(color: Colors.grey)),
-                      validator: (String value) {
-                        return value.contains('@')
-                            ? 'Do not use the @ char.'
-                            : null;
-                      },
-                    ),
-                    new TextFormField(
-                      keyboardType: TextInputType
-                          .text, // Use email input type for emails.
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 15),
-                          hintText: '',
-                          labelText: 'Full Name',
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorStyle: TextStyle(
-                            color: pink,
-                            fontSize: 12,
-                          )),
-                      validator: validateName,
-                      onSaved: (String val) {
-                        _name = val;
-                      },
-                    ),
-                    new TextFormField(
-                      keyboardType: TextInputType
-                          .emailAddress, // Use email input type for emails.
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 15),
-                          hintText: '',
-                          labelText: 'Email ID',
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorStyle: TextStyle(
-                            color: pink,
-                            fontSize: 12,
-                          )),
-                      validator: validateEmail,
-                      onSaved: (String val) {
-                        _email = val;
-                      },
-                    ),
-                    DateTimePickerFormField(
-                      format: dateFormat,
-                      validator: (dt) =>
-                          date == null ? 'DOB is required' : null,
-                      dateOnly: true,
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 0),
-                          hintText: '',
-                          labelText: 'Date of Birth',
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorStyle: TextStyle(
-                            color: pink,
-                            fontSize: 12,
-                          )),
-                      onChanged: (dt) => setState(() => date = dt),
-                    ),
-
-                    new TextFormField(
-                      keyboardType: TextInputType
-                          .emailAddress, // Use email input type for emails.
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 15),
-                          hintText: '',
-                          labelText: 'Spouse Name',
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorStyle: TextStyle(
-                            color: pink,
-                            fontSize: 12,
-                          )),
-                      validator: validateSpouseName,
-                      onSaved: (String val) {
-                        _sname = val;
-                      },
-                    ),
-                    DateTimePickerFormField(
-                      format: dateFormat,
-                      validator: (dt) =>
-                          date == null ? 'Spouse DOB is required' : null,
-                      dateOnly: true,
-                      decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(top: 10, left: 15, right: 0),
-                          hintText: '',
-                          labelText: 'Spouse DOB',
-                          labelStyle: new TextStyle(
-                              color: greylight,
-                              fontSize: 16,
-                              fontFamily: 'SairaSemiCondensed'),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: greymedium, width: 0.8),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: greymedium, width: 0.8)),
-                          errorStyle: TextStyle(
-                            color: pink,
-                            fontSize: 12,
-                          )),
-                      onChanged: (dt) => setState(() => date = dt),
-                    ),
-
-                    new Align(
-                        alignment: Alignment.centerRight,
-                        child: new Padding(
-                          padding:
-                              EdgeInsets.only(top: 7, bottom: 0, right: 15),
-                          child: RaisedButton(
-                            onPressed: _validateInputs,
-                            // _validateInputs,
-                            color: active,
-                            textColor: Colors.white,
-                            child: new Text('Save',
-                                style: new TextStyle(
+              // child: new Form(
+              //   key: _formKey,
+              // autovalidate: _autoValidate,
+              child: new Column(
+                children: <Widget>[
+                  new Container(
+                      constraints: new BoxConstraints.expand(
+                        height: 70.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          new TextField(
+                            keyboardType: TextInputType.number,
+                            controller: _controller,
+                            enabled: false, // Use email input type for emails.
+                            decoration: new InputDecoration(
+                                contentPadding: EdgeInsets.only(
+                                    top: 10, left: 15, right: 15),
+                                hintText: '005',
+                                labelText: 'Code',
+                                suffix: new Icon(
+                                  Icons.block,
+                                  size: 16,
+                                  color: greylight,
+                                ),
+                                labelStyle: new TextStyle(
+                                    color: greylight,
                                     fontSize: 16,
-                                    fontFamily: 'SairaSemiCondensed')),
-                          ),
-                        )),
+                                    fontFamily: 'SairaSemiCondensed'),
+                                enabledBorder: const UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                hintStyle: TextStyle(color: Colors.grey)),
 
-                    // new RaisedButton(
-                    //   onPressed: _selectDate,
-                    //   child: new Text('Click me'),
-                    // )
-                  ],
-                ),
+                            onChanged: (value) => setState(() {
+                                  _code = value;
+                                  _codeerror = validateCode(value);
+                                }),
+                          ),
+                          new Positioned(
+                            left: 15.0,
+                            bottom: 0.0,
+                            child: _codeerror != ""
+                                ? new Container(
+                                    padding: EdgeInsets.only(
+                                        left: 5, right: 5, top: 1, bottom: 3),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft:
+                                                const Radius.circular(5.0),
+                                            bottomRight:
+                                                const Radius.circular(5.0)),
+                                        boxShadow: [
+                                          new BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 5.0,
+                                          ),
+                                        ]),
+                                    child: Text(
+                                      _codeerror,
+                                      style: TextStyle(
+                                        color: pink,
+                                        fontSize: 12,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ))
+                                : new Text(''),
+                          ),
+                        ],
+                      )),
+                  new Container(
+                      padding: EdgeInsets.all(0),
+                      constraints: new BoxConstraints.expand(
+                        height: 60.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          new TextField(
+                            keyboardType: TextInputType
+                                .text, // Use email input type for emails.
+                            decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, left: 15, right: 15),
+                              hintText: '',
+                              labelText: 'Full Name',
+                              labelStyle: new TextStyle(
+                                  color: greylight,
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed'),
+                              enabledBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: greymedium, width: 0.8),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              errorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                            ),
+
+                            // validator: validateName,
+                            // onSaved: (String val) {
+                            //   _name = val;
+                            // },
+                            onChanged: (value) => setState(() {
+                                  _name = value;
+                                  _nameerror = validateName(value);
+                                }),
+                          ),
+                          new Positioned(
+                              left: 15.0,
+                              bottom: 0.0,
+                              child: _nameerror != ""
+                                  ? new Container(
+                                      padding: EdgeInsets.only(
+                                          left: 5, right: 5, top: 0, bottom: 0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft:
+                                                  const Radius.circular(5.0),
+                                              bottomRight:
+                                                  const Radius.circular(5.0)),
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.grey[300],
+                                              blurRadius: 5.0,
+                                            ),
+                                          ]),
+                                      child: Text(_nameerror,
+                                          style: TextStyle(
+                                              color: pink, fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1))
+                                  : new Text('')),
+                        ],
+                      )),
+                  new Container(
+                      padding: EdgeInsets.all(0),
+                      constraints: new BoxConstraints.expand(
+                        height: 60.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          new TextField(
+                            keyboardType: TextInputType
+                                .emailAddress, // Use email input type for emails.
+                            decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, left: 15, right: 15),
+                              hintText: '',
+                              labelText: 'Email ID',
+                              labelStyle: new TextStyle(
+                                  color: greylight,
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed'),
+                              enabledBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: greymedium, width: 0.8),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              errorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                            ),
+
+                            onChanged: (value) => setState(() {
+                                  _email = value;
+                                  _emailerror = validateEmail(value);
+                                }),
+                          ),
+                          new Positioned(
+                              left: 15.0,
+                              bottom: 0.0,
+                              child: _emailerror != ""
+                                  ? new Container(
+                                      padding: EdgeInsets.only(
+                                          left: 10,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft:
+                                                  const Radius.circular(5.0),
+                                              bottomRight:
+                                                  const Radius.circular(5.0)),
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.grey[300],
+                                              blurRadius: 5.0,
+                                            ),
+                                          ]),
+                                      child: Text(_emailerror,
+                                          style: TextStyle(
+                                              color: pink, fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1))
+                                  : new Text('')),
+                        ],
+                      )),
+                  new Container(
+                      padding: EdgeInsets.all(0),
+                      constraints: new BoxConstraints.expand(
+                        height: 60.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          // DateTimePickerFormField(
+                          //     format: dateFormat,
+                          //     dateOnly: true,
+                          //     decoration: new InputDecoration(
+                          //       contentPadding:
+                          //           EdgeInsets.only(top: 0, left: 15, right: 0),
+                          //       hintText: '',
+                          //       labelText: 'Date of Birth',
+                          //       labelStyle: new TextStyle(
+                          //           color: greylight,
+                          //           fontSize: 16,
+                          //           fontFamily: 'SairaSemiCondensed'),
+                          //       enabledBorder: const UnderlineInputBorder(
+                          //           borderSide: const BorderSide(
+                          //               color: greymedium, width: 0.8)),
+                          //       focusedBorder: const UnderlineInputBorder(
+                          //         borderSide: const BorderSide(
+                          //             color: greymedium, width: 0.8),
+                          //       ),
+                          //       errorBorder: UnderlineInputBorder(
+                          //           borderSide: const BorderSide(
+                          //               color: greymedium, width: 0.8)),
+                          //       focusedErrorBorder: UnderlineInputBorder(
+                          //           borderSide: const BorderSide(
+                          //               color: greymedium, width: 0.8)),
+                          //     ),
+                          //     onChanged: (dt) => setState(() {
+                          //           date = dt;
+                          //           _valuedoberror =
+                          //               validateDOB(date.toString());
+                          //         })),
+                          new TextField(
+                            controller: txt,
+                            // Use email input type for emails.
+                            decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, left: 15, right: 15),
+                              hintText: '',
+                              labelText: 'Date of Birth',
+                              labelStyle: new TextStyle(
+                                  color: greylight,
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed'),
+                              enabledBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: greymedium, width: 0.8),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              errorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                            ),
+
+                            // onChanged: (value) => setState(() {
+                            //       _valuedob = value;
+                            //       _emailerror = validateEmail(value);
+                            //     }),
+
+                            onTap: _selectDate,
+                          ),
+
+                          new Positioned(
+                              left: 15.0,
+                              bottom: 0.0,
+                              child: _valuedoberror != ""
+                                  ? new Container(
+                                      padding: EdgeInsets.only(
+                                          left: 10,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft:
+                                                  const Radius.circular(5.0),
+                                              bottomRight:
+                                                  const Radius.circular(5.0)),
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.grey[300],
+                                              blurRadius: 5.0,
+                                            ),
+                                          ]),
+                                      child: Text(_valuedoberror,
+                                          style: TextStyle(
+                                              color: pink, fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1))
+                                  : new Text('')),
+                        ],
+                      )),
+                  new Container(
+                      padding: EdgeInsets.all(0),
+                      constraints: new BoxConstraints.expand(
+                        height: 60.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          new TextField(
+                            keyboardType: TextInputType
+                                .emailAddress, // Use email input type for emails.
+                            decoration: new InputDecoration(
+                                contentPadding: EdgeInsets.only(
+                                    top: 0, left: 15, right: 15),
+                                hintText: '',
+                                labelText: 'Spouse Name',
+                                labelStyle: new TextStyle(
+                                    color: greylight,
+                                    fontSize: 16,
+                                    fontFamily: 'SairaSemiCondensed'),
+                                enabledBorder: const UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                errorBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: greymedium, width: 0.8)),
+                                errorStyle: TextStyle(
+                                  color: pink,
+                                  fontSize: 12,
+                                )),
+                            onChanged: (value) => setState(() {
+                                  _sname = value;
+                                  _snameerror = validateSpouseName(value);
+                                }),
+                          ),
+                          new Positioned(
+                              left: 15.0,
+                              bottom: 0.0,
+                              child: _snameerror != ""
+                                  ? new Container(
+                                      padding: EdgeInsets.only(
+                                          left: 10,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft:
+                                                  const Radius.circular(5.0),
+                                              bottomRight:
+                                                  const Radius.circular(5.0)),
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.grey[300],
+                                              blurRadius: 5.0,
+                                            ),
+                                          ]),
+                                      child: Text(_snameerror,
+                                          style: TextStyle(
+                                              color: pink, fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1))
+                                  : new Text('')),
+                        ],
+                      )),
+                  new Container(
+                      padding: EdgeInsets.all(0),
+                      constraints: new BoxConstraints.expand(
+                        height: 60.0,
+                      ),
+                      child: new Stack(
+                        children: <Widget>[
+                          new TextField(
+                            controller: txt1,
+                            // Use email input type for emails.
+                            decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, left: 15, right: 15),
+                              hintText: '',
+                              labelText: 'Spouse DOB',
+                              labelStyle: new TextStyle(
+                                  color: greylight,
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed'),
+                              enabledBorder: const UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: greymedium, width: 0.8),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              errorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                            ),
+
+                            // onChanged: (txt1) => setState(() {
+                            //       _valuedob = txt1;
+                            //       _svalueerror = validateSpouseDOB(txt1);
+                            //     }),
+
+                            onTap: _selectSpouseDate,
+                          ),
+                          new Positioned(
+                              left: 15.0,
+                              bottom: 0.0,
+                              child: _svalueerror != ""
+                                  ? new Container(
+                                      padding: EdgeInsets.only(
+                                          left: 10,
+                                          right: 10,
+                                          top: 0,
+                                          bottom: 0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft:
+                                                  const Radius.circular(5.0),
+                                              bottomRight:
+                                                  const Radius.circular(5.0)),
+                                          boxShadow: [
+                                            new BoxShadow(
+                                              color: Colors.grey[300],
+                                              blurRadius: 5.0,
+                                            ),
+                                          ]),
+                                      child: Text(_svalueerror,
+                                          style: TextStyle(
+                                              color: pink, fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1))
+                                  : new Text('')),
+                        ],
+                      )),
+
+                  new Align(
+                      alignment: Alignment.centerRight,
+                      child: new Padding(
+                        padding: EdgeInsets.only(top: 7, bottom: 0, right: 15),
+                        child: RaisedButton(
+                          onPressed: _validateInputs,
+                          // _validateInputs,
+                          color: active,
+                          textColor: Colors.white,
+                          child: new Text('Save',
+                              style: new TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed')),
+                        ),
+                      )),
+
+                  // new RaisedButton(
+                  //   onPressed: _selectDate,
+                  //   child: new Text('Click me'),
+                  // )
+                ],
+                // ),
               ))
         ]);
+  }
+
+  String validateCode(String value) {
+    RegExp regex = new RegExp('[0-9]');
+    if (value.length == 0)
+      return 'Code is required';
+    else if (!regex.hasMatch(value))
+      return 'Invalid Code';
+    else
+      return '';
   }
 
   String validateName(String value) {
@@ -324,7 +611,7 @@ class _AddEmployeeState extends State<AddEmployee> {
     else if (!regex.hasMatch(value))
       return 'Invalid Full Name';
     else
-      return null;
+      return '';
   }
 
   String validateEmail(String value) {
@@ -334,14 +621,14 @@ class _AddEmployeeState extends State<AddEmployee> {
     if (!regex.hasMatch(value))
       return 'Invalid Email';
     else
-      return null;
+      return '';
   }
 
   String validateDOB(String value) {
     if (value.length < 1)
       return 'DOB is required';
     else
-      return null;
+      return '';
   }
 
   String validateSpouseName(String value) {
@@ -351,25 +638,62 @@ class _AddEmployeeState extends State<AddEmployee> {
     else if (!regex.hasMatch(value))
       return 'Invalid Spouse Name';
     else
-      return null;
+      return '';
   }
 
   String validateSpouseDOB(String value) {
     if (value.length < 1)
       return 'Spouse DOB is required';
     else
-      return null;
+      return '';
+  }
+
+  bool validation() {
+    var isValidate = true;
+    setState(() {
+      _nameerror = validateName(_name);
+      _codeerror = validateCode(_code);
+      _emailerror = validateEmail(_email);
+      _valuedoberror = validateDOB(_valuedob);
+      _snameerror = validateSpouseName(_sname);
+      _svalueerror = validateSpouseDOB(_svalue);
+    });
+    return isValidate;
   }
 
   void _validateInputs() {
-    if (_formKey.currentState.validate()) {
-//    If all data are correct then save data to out variables
-      _formKey.currentState.save();
-    } else {
+    if (validation()) {
 //    If all data are not valid then start auto validation.
       setState(() {
         _autoValidate = true;
       });
     }
+  }
+
+  Future _selectDate() async {
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime.now().subtract(new Duration(days: (365 * 100))),
+        lastDate: new DateTime.now());
+    if (picked != null)
+      setState(() {
+        txt.text = new DateFormat.yMMMd().format(picked);
+        _valuedoberror = '';
+      });
+  }
+
+  Future _selectSpouseDate() async {
+    var currentYear = DateTime.now().year;
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(currentYear - 100),
+        lastDate: new DateTime.now());
+    if (picked != null)
+      setState(() {
+        txt1.text = new DateFormat.yMMMd().format(picked);
+        _svalueerror = '';
+      });
   }
 }
