@@ -4,12 +4,23 @@ import 'package:nimble_leaves/custom_icons_icons.dart';
 import 'package:nimble_leaves/employee_list/add_employee.dart';
 import 'package:nimble_leaves/menu/menu.dart';
 import 'package:material_search/material_search.dart';
+import 'package:flutter/animation.dart';
 
 const active = const Color.fromRGBO(78, 125, 254, 1);
 const greydark = const Color.fromRGBO(119, 140, 161, 1);
 const greylight = const Color.fromRGBO(237, 237, 237, 1);
 
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
+  SecondScreen({Key key, this.duration}) : super(key: key);
+
+  final Duration duration;
+
+  @override
+  _SecondScreenpage createState() => _SecondScreenpage();
+}
+
+class _SecondScreenpage extends State<SecondScreen>
+    with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final _names = [
     'Igor Minar',
@@ -22,44 +33,21 @@ class SecondScreen extends StatelessWidget {
     'John Scott',
     'Daniel Nadasi',
   ];
+  Animation animation;
+  AnimationController controller;
+
+  initState() {
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 5000), vsync: this);
+
+    animation = Tween(begin: 0.0, end: 25.0).animate(controller);
+    controller.forward();
+  }
+
   Flushbar flush;
   bool _wasButtonClicked;
-  // String _name = 'No one';
   final _formKey = new GlobalKey<FormState>();
-  // _buildMaterialSearchPage(BuildContext context) {
-  //   return new MaterialPageRoute<String>(
-  //       settings: new RouteSettings(
-  //         name: 'material_search',
-  //         isInitialRoute: true,
-  //       ),
-  //       builder: (BuildContext context) {
-  //         return new Material(
-  //           child: new MaterialSearch<String>(
-  //             placeholder: 'Search',
-  //             results: _names
-  //                 .map((String v) => new MaterialSearchResult<String>(
-  //                       value: v,
-  //                       text: "Mr(s). $v",
-  //                     ))
-  //                 .toList(),
-  //             filter: (dynamic value, String criteria) {
-  //               return value.toLowerCase().trim().contains(
-  //                   new RegExp(r'' + criteria.toLowerCase().trim() + ''));
-  //             },
-  //             onSelect: (dynamic value) => Navigator.of(context).pop(value),
-  //             onSubmit: (String value) => Navigator.of(context).pop(value),
-  //           ),
-  //         );
-  //       });
-  // }
-
-  // _showMaterialSearch(BuildContext context) {
-  //   Navigator.of(context)
-  //       .push(_buildMaterialSearchPage(context))
-  //       .then((dynamic value) {
-  //     // setState(() => _name = value as String);
-  //   });
-  // }
 
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -174,8 +162,10 @@ class SecondScreen extends StatelessWidget {
                                   color: greydark,
                                 ),
                                 new SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
+                                  width: MediaQuery.of(context).size.width <=
+                                          330
+                                      ? MediaQuery.of(context).size.width * 0.4
+                                      : MediaQuery.of(context).size.width * .6,
                                   child:
                                       //  new TextField(
                                       //   keyboardType: TextInputType.text,
@@ -237,6 +227,8 @@ class SecondScreen extends StatelessWidget {
                               flushbarPosition: FlushbarPosition.TOP,
                               aroundPadding: 0,
                               borderRadius: 5,
+                              forwardAnimationCurve: Curves.linear,
+                              reverseAnimationCurve: Curves.linear,
                             )
                               ..title = null
                               ..titleText = null
@@ -249,9 +241,9 @@ class SecondScreen extends StatelessWidget {
                                     fontSize: 14,
                                     fontFamily: 'SairaSemiCondensed'),
                               )
-                              ..duration = Duration(seconds: 4)
+                              ..duration = Duration(seconds: 10)
                               ..icon = Icon(
-                                Icons.check_circle_outline,
+                                CustomIcons.verified,
                                 color: greydark,
                                 size: 16,
                               )
@@ -268,12 +260,16 @@ class SecondScreen extends StatelessWidget {
                                       fontFamily: 'SairaSemiCondensed'),
                                 ),
                               )
-                              ..backgroundColor =
-                                  Color.fromRGBO(255, 255, 255, 0.5)
+                              ..backgroundColor = Colors.red
                               ..isDismissible = true
                               ..shadowColor = Colors.grey[200]
                               ..showProgressIndicator = true
                               ..progressIndicatorBackgroundColor = active
+                              ..progressIndicatorController = controller
+                              ..progressIndicatorValueColor =
+                                  new AlwaysStoppedAnimation<Color>(
+                                      Colors.white)
+                              ..forwardAnimationCurve
                               ..show(context).then((result) {
                                 // setState() is optional here
                                 _wasButtonClicked = result;
@@ -317,7 +313,9 @@ class SecondScreen extends StatelessWidget {
   }
 
   double getwidth(BuildContext context) {
-    if (MediaQuery.of(context).size.width <= 767) {
+    if (MediaQuery.of(context).size.width <= 340) {
+      return MediaQuery.of(context).size.width * 0.72;
+    } else if (MediaQuery.of(context).size.width <= 767) {
       return MediaQuery.of(context).size.width * 0.76;
     } else if (MediaQuery.of(context).size.width >= 767 &&
         MediaQuery.of(context).size.width <= 1023) {

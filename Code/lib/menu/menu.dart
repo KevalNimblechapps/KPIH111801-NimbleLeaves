@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nimble_leaves/employee_list/employee_list.dart';
+import 'package:nimble_leaves/employee_list/position.dart';
 import 'package:nimble_leaves/main.dart';
 import 'package:nimble_leaves/custom_icons_icons.dart';
 
@@ -108,7 +109,7 @@ class DrawerOnly extends StatelessWidget {
                                 Navigator.push(
                                     ctxt,
                                     new MaterialPageRoute(
-                                        builder: (ctxt) => new SecondScreen()));
+                                        builder: (ctxt) => new Position()));
                               },
                             ),
                             new Padding(

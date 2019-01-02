@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:nimble_leaves/custom_icons_icons.dart';
 import 'package:intl/intl.dart';
 
 const active = const Color.fromRGBO(78, 125, 254, 1);
@@ -106,9 +106,10 @@ class _AddEmployeeState extends State<AddEmployee> {
                 children: <Widget>[
                   new Container(
                       constraints: new BoxConstraints.expand(
-                        height: 70.0,
+                        height: 60.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
                         children: <Widget>[
                           new TextField(
                             keyboardType: TextInputType.number,
@@ -127,6 +128,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                 labelStyle: new TextStyle(
                                     color: greylight,
                                     fontSize: 16,
+                                    fontWeight: FontWeight.w400,
                                     fontFamily: 'SairaSemiCondensed'),
                                 enabledBorder: const UnderlineInputBorder(
                                     borderSide: const BorderSide(
@@ -179,11 +181,14 @@ class _AddEmployeeState extends State<AddEmployee> {
                         ],
                       )),
                   new Container(
+                      color: Colors.white,
                       padding: EdgeInsets.all(0),
                       constraints: new BoxConstraints.expand(
-                        height: 60.0,
+                        height: 50.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
+                        fit: StackFit.loose,
                         children: <Widget>[
                           new TextField(
                             keyboardType: TextInputType
@@ -196,6 +201,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               labelStyle: new TextStyle(
                                   color: greylight,
                                   fontSize: 16,
+                                  fontWeight: FontWeight.w400,
                                   fontFamily: 'SairaSemiCondensed'),
                               enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(
@@ -223,11 +229,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                           new Positioned(
                               left: 15.0,
-                              bottom: 0.0,
+                              bottom: -13.0,
                               child: _nameerror != ""
                                   ? new Container(
                                       padding: EdgeInsets.only(
-                                          left: 5, right: 5, top: 0, bottom: 0),
+                                          left: 9, right: 9, top: 1, bottom: 1),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
@@ -241,20 +247,33 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               blurRadius: 5.0,
                                             ),
                                           ]),
-                                      child: Text(_nameerror,
-                                          style: TextStyle(
-                                              color: pink, fontSize: 12),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1))
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            CustomIcons.warning,
+                                            size: 11,
+                                            color: pink,
+                                          ),
+                                          Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 8)),
+                                          Text(_nameerror,
+                                              style: TextStyle(
+                                                  color: pink, fontSize: 12),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1),
+                                        ],
+                                      ))
                                   : new Text('')),
                         ],
                       )),
                   new Container(
                       padding: EdgeInsets.all(0),
                       constraints: new BoxConstraints.expand(
-                        height: 60.0,
+                        height: 50.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
                         children: <Widget>[
                           new TextField(
                             keyboardType: TextInputType
@@ -267,6 +286,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               labelStyle: new TextStyle(
                                   color: greylight,
                                   fontSize: 16,
+                                  fontWeight: FontWeight.w400,
                                   fontFamily: 'SairaSemiCondensed'),
                               enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(
@@ -290,14 +310,14 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                           new Positioned(
                               left: 15.0,
-                              bottom: 0.0,
+                              bottom: -13.0,
                               child: _emailerror != ""
                                   ? new Container(
                                       padding: EdgeInsets.only(
                                           left: 10,
                                           right: 10,
-                                          top: 0,
-                                          bottom: 0),
+                                          top: 1,
+                                          bottom: 1),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
@@ -311,52 +331,31 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               blurRadius: 5.0,
                                             ),
                                           ]),
-                                      child: Text(_emailerror,
-                                          style: TextStyle(
-                                              color: pink, fontSize: 12),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1))
+                                      child: Row(children: <Widget>[
+                                        Icon(
+                                          CustomIcons.warning,
+                                          size: 11,
+                                          color: pink,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 8)),
+                                        Text(_emailerror,
+                                            style: TextStyle(
+                                                color: pink, fontSize: 12),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1)
+                                      ]))
                                   : new Text('')),
                         ],
                       )),
                   new Container(
                       padding: EdgeInsets.all(0),
                       constraints: new BoxConstraints.expand(
-                        height: 60.0,
+                        height: 50.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
                         children: <Widget>[
-                          // DateTimePickerFormField(
-                          //     format: dateFormat,
-                          //     dateOnly: true,
-                          //     decoration: new InputDecoration(
-                          //       contentPadding:
-                          //           EdgeInsets.only(top: 0, left: 15, right: 0),
-                          //       hintText: '',
-                          //       labelText: 'Date of Birth',
-                          //       labelStyle: new TextStyle(
-                          //           color: greylight,
-                          //           fontSize: 16,
-                          //           fontFamily: 'SairaSemiCondensed'),
-                          //       enabledBorder: const UnderlineInputBorder(
-                          //           borderSide: const BorderSide(
-                          //               color: greymedium, width: 0.8)),
-                          //       focusedBorder: const UnderlineInputBorder(
-                          //         borderSide: const BorderSide(
-                          //             color: greymedium, width: 0.8),
-                          //       ),
-                          //       errorBorder: UnderlineInputBorder(
-                          //           borderSide: const BorderSide(
-                          //               color: greymedium, width: 0.8)),
-                          //       focusedErrorBorder: UnderlineInputBorder(
-                          //           borderSide: const BorderSide(
-                          //               color: greymedium, width: 0.8)),
-                          //     ),
-                          //     onChanged: (dt) => setState(() {
-                          //           date = dt;
-                          //           _valuedoberror =
-                          //               validateDOB(date.toString());
-                          //         })),
                           new TextField(
                             controller: txt,
                             // Use email input type for emails.
@@ -367,6 +366,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               labelText: 'Date of Birth',
                               labelStyle: new TextStyle(
                                   color: greylight,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 16,
                                   fontFamily: 'SairaSemiCondensed'),
                               enabledBorder: const UnderlineInputBorder(
@@ -384,24 +384,18 @@ class _AddEmployeeState extends State<AddEmployee> {
                                       color: greymedium, width: 0.8)),
                             ),
 
-                            // onChanged: (value) => setState(() {
-                            //       _valuedob = value;
-                            //       _emailerror = validateEmail(value);
-                            //     }),
-
                             onTap: _selectDate,
                           ),
-
                           new Positioned(
                               left: 15.0,
-                              bottom: 0.0,
+                              bottom: -13.0,
                               child: _valuedoberror != ""
                                   ? new Container(
                                       padding: EdgeInsets.only(
                                           left: 10,
                                           right: 10,
-                                          top: 0,
-                                          bottom: 0),
+                                          top: 1,
+                                          bottom: 1),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
@@ -415,50 +409,58 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               blurRadius: 5.0,
                                             ),
                                           ]),
-                                      child: Text(_valuedoberror,
-                                          style: TextStyle(
-                                              color: pink, fontSize: 12),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1))
+                                      child: Row(children: <Widget>[
+                                        Icon(
+                                          CustomIcons.warning,
+                                          size: 11,
+                                          color: pink,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 8)),
+                                        Text(_valuedoberror,
+                                            style: TextStyle(
+                                                color: pink, fontSize: 12),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1)
+                                      ]))
                                   : new Text('')),
                         ],
                       )),
                   new Container(
                       padding: EdgeInsets.all(0),
                       constraints: new BoxConstraints.expand(
-                        height: 60.0,
+                        height: 50.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
                         children: <Widget>[
                           new TextField(
                             keyboardType: TextInputType
                                 .emailAddress, // Use email input type for emails.
                             decoration: new InputDecoration(
-                                contentPadding: EdgeInsets.only(
-                                    top: 0, left: 15, right: 15),
-                                hintText: '',
-                                labelText: 'Spouse Name',
-                                labelStyle: new TextStyle(
-                                    color: greylight,
-                                    fontSize: 16,
-                                    fontFamily: 'SairaSemiCondensed'),
-                                enabledBorder: const UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                focusedBorder: const UnderlineInputBorder(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, left: 15, right: 15),
+                              hintText: '',
+                              labelText: 'Spouse Name',
+                              labelStyle: new TextStyle(
+                                  color: greylight,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  fontFamily: 'SairaSemiCondensed'),
+                              enabledBorder: const UnderlineInputBorder(
                                   borderSide: const BorderSide(
-                                      color: greymedium, width: 0.8),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                errorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: greymedium, width: 0.8)),
-                                errorStyle: TextStyle(
-                                  color: pink,
-                                  fontSize: 12,
-                                )),
+                                      color: greymedium, width: 0.8)),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: greymedium, width: 0.8),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                              errorBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: greymedium, width: 0.8)),
+                            ),
                             onChanged: (value) => setState(() {
                                   _sname = value;
                                   _snameerror = validateSpouseName(value);
@@ -466,14 +468,14 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                           new Positioned(
                               left: 15.0,
-                              bottom: 0.0,
+                              bottom: -13.0,
                               child: _snameerror != ""
                                   ? new Container(
                                       padding: EdgeInsets.only(
                                           left: 10,
                                           right: 10,
-                                          top: 0,
-                                          bottom: 0),
+                                          top: 1,
+                                          bottom: 1),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
@@ -487,20 +489,30 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               blurRadius: 5.0,
                                             ),
                                           ]),
-                                      child: Text(_snameerror,
-                                          style: TextStyle(
-                                              color: pink, fontSize: 12),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1))
+                                      child: Row(children: <Widget>[
+                                        Icon(
+                                          CustomIcons.warning,
+                                          size: 11,
+                                          color: pink,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 8)),
+                                        Text(_snameerror,
+                                            style: TextStyle(
+                                                color: pink, fontSize: 12),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1)
+                                      ]))
                                   : new Text('')),
                         ],
                       )),
                   new Container(
                       padding: EdgeInsets.all(0),
                       constraints: new BoxConstraints.expand(
-                        height: 60.0,
+                        height: 50.0,
                       ),
                       child: new Stack(
+                        overflow: Overflow.visible,
                         children: <Widget>[
                           new TextField(
                             controller: txt1,
@@ -512,6 +524,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               labelText: 'Spouse DOB',
                               labelStyle: new TextStyle(
                                   color: greylight,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 16,
                                   fontFamily: 'SairaSemiCondensed'),
                               enabledBorder: const UnderlineInputBorder(
@@ -538,14 +551,14 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                           new Positioned(
                               left: 15.0,
-                              bottom: 0.0,
+                              bottom: -13.0,
                               child: _svalueerror != ""
                                   ? new Container(
                                       padding: EdgeInsets.only(
                                           left: 10,
                                           right: 10,
-                                          top: 0,
-                                          bottom: 0),
+                                          top: 1,
+                                          bottom: 1),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
@@ -559,11 +572,20 @@ class _AddEmployeeState extends State<AddEmployee> {
                                               blurRadius: 5.0,
                                             ),
                                           ]),
-                                      child: Text(_svalueerror,
-                                          style: TextStyle(
-                                              color: pink, fontSize: 12),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1))
+                                      child: Row(children: <Widget>[
+                                        Icon(
+                                          CustomIcons.warning,
+                                          size: 11,
+                                          color: pink,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 8)),
+                                        Text(_svalueerror,
+                                            style: TextStyle(
+                                                color: pink, fontSize: 12),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1)
+                                      ]))
                                   : new Text('')),
                         ],
                       )),
@@ -577,6 +599,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                           // _validateInputs,
                           color: active,
                           textColor: Colors.white,
+                          disabledTextColor: Colors.white,
                           child: new Text('Save',
                               style: new TextStyle(
                                   fontSize: 16,
@@ -607,7 +630,7 @@ class _AddEmployeeState extends State<AddEmployee> {
   String validateName(String value) {
     RegExp regex = new RegExp('[a-zA-Z]');
     if (value.length == 0)
-      return 'Full Name is required';
+      return 'Full Name is required.';
     else if (!regex.hasMatch(value))
       return 'Invalid Full Name';
     else
@@ -618,45 +641,47 @@ class _AddEmployeeState extends State<AddEmployee> {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
+    if (value.length == 0) return 'Email ID is required.';
     if (!regex.hasMatch(value))
-      return 'Invalid Email';
+      return 'Invalid Email ID.';
     else
       return '';
   }
 
   String validateDOB(String value) {
-    if (value.length < 1)
-      return 'DOB is required';
-    else
+    if (value == '') {
+      return 'Date of Birth is required.';
+    } else
       return '';
   }
 
   String validateSpouseName(String value) {
     RegExp regex = new RegExp('[a-zA-Z]');
     if (value.length < 1)
-      return 'Spouse Name is required';
-    else if (!regex.hasMatch(value))
-      return 'Invalid Spouse Name';
+      return 'Name of the Spouse is required.';
+    // else if (!regex.hasMatch(value))
+    //   return 'Invalid Spouse Name';
     else
       return '';
   }
 
   String validateSpouseDOB(String value) {
     if (value.length < 1)
-      return 'Spouse DOB is required';
+      return 'Birthdate of Spouse is required.';
     else
       return '';
   }
 
   bool validation() {
     var isValidate = true;
+
     setState(() {
       _nameerror = validateName(_name);
       _codeerror = validateCode(_code);
       _emailerror = validateEmail(_email);
-      _valuedoberror = validateDOB(_valuedob);
+      _valuedoberror = validateDOB(txt.text);
       _snameerror = validateSpouseName(_sname);
-      _svalueerror = validateSpouseDOB(_svalue);
+      _svalueerror = validateSpouseDOB(txt1.text);
     });
     return isValidate;
   }
@@ -680,6 +705,7 @@ class _AddEmployeeState extends State<AddEmployee> {
       setState(() {
         txt.text = new DateFormat.yMMMd().format(picked);
         _valuedoberror = '';
+        validateDOB(txt.text);
       });
   }
 

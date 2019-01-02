@@ -78,13 +78,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-  datetime_picker_formfield:
-    dependency: "direct main"
-    description:
-      name: datetime_picker_formfield
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.7"
   dio:
     dependency: "direct main"
     description:
@@ -263,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.2"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.11"
   plugin:
     dependency: transitive
     description:
@@ -445,4 +445,4 @@ packages:
     version: "2.1.15"
 sdks:
   dart: ">=2.1.0-dev.5.0 <3.0.0"
-  flutter: ">=0.4.0 <2.0.0"
+  flutter: ">=0.4.0"
