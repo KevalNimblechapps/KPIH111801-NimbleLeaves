@@ -2,6 +2,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:nimble_leaves/custom_icons_icons.dart';
 import 'package:nimble_leaves/employee_list/add_employee.dart';
+import 'package:nimble_leaves/employee_list/toaster.dart';
 import 'package:nimble_leaves/menu/menu.dart';
 import 'package:material_search/material_search.dart';
 import 'package:flutter/animation.dart';
@@ -14,6 +15,7 @@ class SecondScreen extends StatefulWidget {
   SecondScreen({Key key, this.duration}) : super(key: key);
 
   final Duration duration;
+  final Toaster toast = new Toaster();
 
   @override
   _SecondScreenpage createState() => _SecondScreenpage();
@@ -223,57 +225,58 @@ class _SecondScreenpage extends State<SecondScreen>
                             color: greydark,
                           ),
                           onPressed: () {
-                            Flushbar(
-                              flushbarPosition: FlushbarPosition.TOP,
-                              aroundPadding: 0,
-                              borderRadius: 5,
-                              forwardAnimationCurve: Curves.linear,
-                              reverseAnimationCurve: Curves.linear,
-                            )
-                              ..title = null
-                              ..titleText = null
-                              ..messageText = Text(
-                                'Unplanned leave edited successfully.',
-                                style: TextStyle(
-                                    color: greydark,
-                                    height: 0.8,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    fontFamily: 'SairaSemiCondensed'),
-                              )
-                              ..duration = Duration(seconds: 10)
-                              ..icon = Icon(
-                                CustomIcons.verified,
-                                color: greydark,
-                                size: 16,
-                              )
-                              ..mainButton = FlatButton(
-                                onPressed: () {
-                                  flush.dismiss(true); // result = true
-                                },
-                                child: Text(
-                                  "Close",
-                                  style: TextStyle(
-                                      color: greydark,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                      fontFamily: 'SairaSemiCondensed'),
-                                ),
-                              )
-                              ..backgroundColor = Colors.red
-                              ..isDismissible = true
-                              ..shadowColor = Colors.grey[200]
-                              ..showProgressIndicator = true
-                              ..progressIndicatorBackgroundColor = active
-                              ..progressIndicatorController = controller
-                              ..progressIndicatorValueColor =
-                                  new AlwaysStoppedAnimation<Color>(
-                                      Colors.white)
-                              ..forwardAnimationCurve
-                              ..show(context).then((result) {
-                                // setState() is optional here
-                                _wasButtonClicked = result;
-                              });
+                            widget.toast.showFlushbar(
+                                context,
+                                "unplanned leave saved successfully",
+                                CustomIcons.verified);
+                            // Flushbar(
+                            //   flushbarPosition: FlushbarPosition.TOP,
+                            //   aroundPadding: 0,
+                            //   borderRadius: 5,
+                            //   forwardAnimationCurve: Curves.linear,
+                            //   reverseAnimationCurve: Curves.linear,
+                            // )
+                            //   ..title = null
+                            //   ..titleText = null
+                            //   ..messageText = Text(
+                            //     'Unplanned leave edited successfully.',
+                            //     style: TextStyle(
+                            //         color: greydark,
+                            //         height: 0.8,
+                            //         fontWeight: FontWeight.w500,
+                            //         fontSize: 14,
+                            //         fontFamily: 'SairaSemiCondensed'),
+                            //   )
+                            //   ..duration = Duration(seconds: 10)
+                            //   ..icon = Icon(
+                            //     CustomIcons.verified,
+                            //     color: greydark,
+                            //     size: 16,
+                            //   )
+                            //   ..mainButton = FlatButton(
+                            //     onPressed: () {
+                            //       flush.dismiss(true); // result = true
+                            //     },
+                            //     child: Text(
+                            //       "Close",
+                            //       style: TextStyle(
+                            //           color: greydark,
+                            //           fontWeight: FontWeight.w600,
+                            //           fontSize: 16,
+                            //           fontFamily: 'SairaSemiCondensed'),
+                            //     ),
+                            //   )
+                            //   ..backgroundColor = Colors.red
+                            //   ..isDismissible = true
+                            //   ..shadowColor = Colors.grey[200]
+                            //   ..showProgressIndicator = true
+                            //   ..progressIndicatorBackgroundColor = active
+                            //   ..progressIndicatorController = controller
+                            //   ..progressIndicatorValueColor =
+                            //       new AlwaysStoppedAnimation<Color>(
+                            //           Colors.white)
+                            //   ..forwardAnimationCurve
+                            //   ..show(context);
                           },
                         ))
                   ],

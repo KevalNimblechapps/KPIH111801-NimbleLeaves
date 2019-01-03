@@ -23,21 +23,26 @@ class _AddEmployeeState extends State<AddEmployee> {
   bool _autoValidate = false;
   String _code = "005";
   String _codeerror = "";
+  bool _codevalid = false;
   String _name = "";
   String _nameerror = "";
+  bool _namevalid = false;
   String _email = "";
   String _emailerror = "";
+  bool _emailvalid = false;
   String _sname = "";
   String _snameerror = "";
+  bool _snamevalid = false;
   String _svalue = "";
   String _svalueerror = "";
+  bool _svaluevalid = false;
   String _value = '';
   String _valuedob = '';
+  bool _dobvalid = false;
   String _valuedoberror = '';
   FormType _formType = FormType.addEmployee;
   DateTime date;
   final dateFormat = DateFormat("MMMM d, yyyy");
-
   @override
   void initState() {
     super.initState();
@@ -619,12 +624,15 @@ class _AddEmployeeState extends State<AddEmployee> {
 
   String validateCode(String value) {
     RegExp regex = new RegExp('[0-9]');
+
     if (value.length == 0)
       return 'Code is required';
     else if (!regex.hasMatch(value))
       return 'Invalid Code';
-    else
+    else {
+      _codevalid = true;
       return '';
+    }
   }
 
   String validateName(String value) {
@@ -633,8 +641,10 @@ class _AddEmployeeState extends State<AddEmployee> {
       return 'Full Name is required.';
     else if (!regex.hasMatch(value))
       return 'Invalid Full Name';
-    else
+    else {
+      _namevalid = true;
       return '';
+    }
   }
 
   String validateEmail(String value) {
@@ -644,15 +654,19 @@ class _AddEmployeeState extends State<AddEmployee> {
     if (value.length == 0) return 'Email ID is required.';
     if (!regex.hasMatch(value))
       return 'Invalid Email ID.';
-    else
+    else {
+      _emailvalid = true;
       return '';
+    }
   }
 
   String validateDOB(String value) {
     if (value == '') {
       return 'Date of Birth is required.';
-    } else
+    } else {
+      _dobvalid = true;
       return '';
+    }
   }
 
   String validateSpouseName(String value) {
@@ -661,19 +675,31 @@ class _AddEmployeeState extends State<AddEmployee> {
       return 'Name of the Spouse is required.';
     // else if (!regex.hasMatch(value))
     //   return 'Invalid Spouse Name';
-    else
+    else {
+      _snamevalid = true;
       return '';
+    }
   }
 
   String validateSpouseDOB(String value) {
     if (value.length < 1)
       return 'Birthdate of Spouse is required.';
-    else
+    else {
+      _svaluevalid = true;
       return '';
+    }
   }
 
   bool validation() {
-    var isValidate = true;
+    var isValidate = false;
+    if (_codevalid &&
+        _namevalid &&
+        _emailvalid &&
+        _dobvalid &&
+        _snamevalid &&
+        _svaluevalid) {
+      isValidate = true;
+    }
 
     setState(() {
       _nameerror = validateName(_name);
@@ -688,7 +714,10 @@ class _AddEmployeeState extends State<AddEmployee> {
 
   void _validateInputs() {
     if (validation()) {
+      print('kdskflm');
 //    If all data are not valid then start auto validation.
+      Navigator.pop(context);
+
       setState(() {
         _autoValidate = true;
       });
