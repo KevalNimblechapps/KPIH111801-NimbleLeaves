@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nimble_leaves/employee_list/employee_list.dart';
+import 'package:nimble_leaves/employee/ListEmployee.dart';
 
 const active = const Color.fromRGBO(78, 125, 254, 1);
 
@@ -46,7 +46,7 @@ class FirstScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // Replace with a Row for horizontal icon + text
             children: <Widget>[
-              Image.asset('images/g.png', height: 22, width: 22),
+              Image.asset('assests/images/g.png', height: 22, width: 22),
               Text(
                 "Log in with Google",
                 textAlign: TextAlign.left,
@@ -63,8 +63,8 @@ class FirstScreen extends StatelessWidget {
           highlightedBorderColor: active,
           splashColor: Colors.transparent,
           //  MediaQuery.of(context).size.width <= 767
-          //     ? Image.asset('images/login.png')
-          //     : Image.asset('images/login-ipad.png'),
+          //     ? Image.asset('assests/images/login.png')
+          //     : Image.asset('assests/images/login-ipad.png'),
           color: Color.fromRGBO(248, 250, 251, 1),
           highlightElevation: 0,
           shape: new RoundedRectangleBorder(

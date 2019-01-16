@@ -1,20 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:nimble_leaves/employee_list/employee_list.dart';
-import 'package:nimble_leaves/employee_list/position.dart';
+import 'package:nimble_leaves/PlannedLeave/PlannedLeave.dart';
+import 'package:nimble_leaves/employee/ListEmployee.dart';
 import 'package:nimble_leaves/main.dart';
-import 'package:nimble_leaves/custom_icons_icons.dart';
+import 'package:nimble_leaves/component/custom_icons_icons.dart';
 
 const kShrineBrown900 = const Color.fromRGBO(78, 125, 254, 1);
 const inactive = const Color.fromRGBO(119, 140, 161, 1);
 const active = const Color.fromRGBO(78, 125, 254, 1);
 
-class DrawerOnly extends StatelessWidget {
+class DrawerOnly extends StatefulWidget {
+  DrawerOnly(
+      {Key key,
+      this.dashboard = false,
+      this.unplanned = false,
+      this.report = false,
+      this.planned,
+      this.employee = false})
+      : super(key: key);
+  final bool dashboard;
+  final bool unplanned;
+  final bool report;
+  final String planned;
+  final bool employee;
+  @override
+  State<StatefulWidget> createState() => DrawerOnlyState();
+  // @override
+  // DrawerOnlyState createState() {
+  //   return new DrawerOnlyState();
+  // }
+}
+
+class DrawerOnlyState extends State<DrawerOnly> {
   @override
   Widget build(BuildContext ctxt) {
+    if (widget.planned == "") {
+      print('fdsf');
+    }
     double width = MediaQuery.of(ctxt).size.width;
     if (width <= 767) {
       return Padding(
-        padding: EdgeInsets.only(top: 40),
+        padding: EdgeInsets.only(top: MediaQuery.of(ctxt).padding.top),
         child: Container(
           width: 65.0,
           decoration: new BoxDecoration(boxShadow: [
@@ -73,8 +98,10 @@ class DrawerOnly extends StatelessWidget {
                             new ListTile(
                               title: IconButton(
                                   icon: Icon(
-                                    CustomIcons.dashboard,
-                                    color: inactive,
+                                    widget.dashboard
+                                        ? CustomIcons.dashboardactive
+                                        : CustomIcons.dashboard,
+                                    color: widget.dashboard ? active : inactive,
                                   ),
                                   iconSize: 36,
                                   onPressed: null,
@@ -97,32 +124,10 @@ class DrawerOnly extends StatelessWidget {
                             new ListTile(
                               title: IconButton(
                                   icon: Icon(
-                                    CustomIcons.unplanned,
-                                    color: inactive,
-                                  ),
-                                  iconSize: 36,
-                                  onPressed: null,
-                                  padding:
-                                      EdgeInsets.only(right: 12.0, left: 1.0)),
-                              onTap: () {
-                                Navigator.pop(ctxt);
-                                Navigator.push(
-                                    ctxt,
-                                    new MaterialPageRoute(
-                                        builder: (ctxt) => new Position()));
-                              },
-                            ),
-                            new Padding(
-                              padding: EdgeInsets.only(left: 16, right: 16),
-                              child: new Divider(
-                                color: Color.fromRGBO(237, 237, 237, 1),
-                              ),
-                            ),
-                            new ListTile(
-                              title: IconButton(
-                                  icon: Icon(
-                                    CustomIcons.reports,
-                                    color: inactive,
+                                    widget.unplanned
+                                        ? CustomIcons.unplannedactive
+                                        : CustomIcons.unplanned,
+                                    color: widget.unplanned ? active : inactive,
                                   ),
                                   iconSize: 36,
                                   onPressed: null,
@@ -145,8 +150,10 @@ class DrawerOnly extends StatelessWidget {
                             new ListTile(
                               title: IconButton(
                                   icon: Icon(
-                                    CustomIcons.planned,
-                                    color: inactive,
+                                    widget.report
+                                        ? CustomIcons.reports
+                                        : CustomIcons.reports,
+                                    color: widget.report ? active : inactive,
                                   ),
                                   iconSize: 36,
                                   onPressed: null,
@@ -158,6 +165,34 @@ class DrawerOnly extends StatelessWidget {
                                     ctxt,
                                     new MaterialPageRoute(
                                         builder: (ctxt) => new SecondScreen()));
+                              },
+                            ),
+                            new Padding(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: new Divider(
+                                color: Color.fromRGBO(237, 237, 237, 1),
+                              ),
+                            ),
+                            new ListTile(
+                              title: IconButton(
+                                  icon: Icon(
+                                    widget.planned == ""
+                                        ? CustomIcons.plannedactive
+                                        : CustomIcons.planned,
+                                    color: widget.planned == ""
+                                        ? active
+                                        : inactive,
+                                  ),
+                                  iconSize: 36,
+                                  onPressed: null,
+                                  padding:
+                                      EdgeInsets.only(right: 12.0, left: 1.0)),
+                              onTap: () {
+                                Navigator.pop(ctxt);
+                                Navigator.push(
+                                    ctxt,
+                                    new MaterialPageRoute(
+                                        builder: (ctxt) => new PlannedLeave()));
                               },
                             ),
                             new Padding(
@@ -170,8 +205,10 @@ class DrawerOnly extends StatelessWidget {
                               selected: true,
                               title: IconButton(
                                   icon: Icon(
-                                    CustomIcons.employee,
-                                    color: kShrineBrown900,
+                                    widget.employee
+                                        ? CustomIcons.employee
+                                        : CustomIcons.employee_inactive,
+                                    color: widget.employee ? active : inactive,
                                   ),
                                   iconSize: 36,
                                   onPressed: null,
@@ -187,16 +224,20 @@ class DrawerOnly extends StatelessWidget {
                                         builder: (ctxt) => new SecondScreen()));
                               },
                             ),
-                            new Padding(
-                              padding: EdgeInsets.only(left: 16, right: 16),
-                              child: new Divider(
-                                color: Color.fromRGBO(237, 237, 237, 1),
-                              ),
-                            ),
                           ],
                         )),
                     Positioned(
-                      bottom: 25,
+                        bottom: 75,
+                        right: 12,
+                        child: Container(
+                          width: 42,
+                          height: 1,
+                          child: new Divider(
+                            color: Color.fromRGBO(237, 237, 237, 1),
+                          ),
+                        )),
+                    Positioned(
+                      bottom: 15,
                       right: 8,
                       child: IconButton(
                           icon: Icon(
@@ -206,7 +247,7 @@ class DrawerOnly extends StatelessWidget {
                           iconSize: 42,
                           onPressed: () {
                             Navigator.pop(ctxt);
-                            Navigator.push(
+                            Navigator.pop(
                                 ctxt,
                                 new MaterialPageRoute(
                                     builder: (ctxt) => new FirstScreen()));
@@ -218,7 +259,8 @@ class DrawerOnly extends StatelessWidget {
           ),
         ),
       );
-    } else if (width >= 768 && width <= 1023) {
+    } else if (width >= 767 && width <= 1023) {
+      print(widget.planned);
       return ListView(
         // This next line does the trick.
         scrollDirection: Axis.horizontal,
@@ -228,8 +270,10 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.dashboard,
-                  color: inactive,
+                  widget.dashboard
+                      ? CustomIcons.dashboardactive
+                      : CustomIcons.dashboard,
+                  color: widget.dashboard ? active : inactive,
                 ),
                 iconSize: 28,
                 onPressed: () {
@@ -245,8 +289,10 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.unplanned,
-                  color: inactive,
+                  widget.unplanned
+                      ? CustomIcons.unplannedactive
+                      : CustomIcons.unplanned,
+                  color: widget.unplanned ? active : inactive,
                 ),
                 iconSize: 28,
                 onPressed: () {
@@ -262,8 +308,8 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.reports,
-                  color: inactive,
+                  widget.report ? CustomIcons.reports : CustomIcons.reports,
+                  color: widget.report ? active : inactive,
                 ),
                 iconSize: 28,
                 onPressed: () {
@@ -279,19 +325,29 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.planned,
-                  color: inactive,
+                  widget.planned == ""
+                      ? CustomIcons.plannedactive
+                      : CustomIcons.planned,
+                  color: widget.planned == "" ? active : inactive,
                 ),
                 iconSize: 28,
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pop(ctxt);
+                  Navigator.push(
+                      ctxt,
+                      new MaterialPageRoute(
+                          builder: (ctxt) => new PlannedLeave()));
+                },
                 padding: EdgeInsets.only(top: 10)),
           ),
           Container(
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee,
-                  color: active,
+                  widget.employee
+                      ? CustomIcons.employee
+                      : CustomIcons.employee_inactive,
+                  color: widget.employee ? Colors.red : inactive,
                 ),
                 iconSize: 28,
                 onPressed: () {
@@ -412,8 +468,10 @@ class DrawerOnly extends StatelessWidget {
             width: 60.0,
             child: IconButton(
                 icon: Icon(
-                  CustomIcons.employee,
-                  color: active,
+                  widget.employee
+                      ? CustomIcons.employee
+                      : CustomIcons.employee_inactive,
+                  color: widget.employee ? active : inactive,
                 ),
                 iconSize: 28,
                 onPressed: () {
