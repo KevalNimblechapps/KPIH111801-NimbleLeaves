@@ -15,14 +15,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dio: 1.0.0
+  intl: ^0.15.0
+  shimmer: ^1.0.0
+ 
+  # flutter_webview_plugin: ^0.3.0+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-<<<<<<< HEAD
-=======
-  english_words: ^3.1.0
->>>>>>> Employee
+  material_search: ^0.2.8
+  flushbar: ^1.2.0
+  percent_indicator: "^1.0.11" 
+  custom_radio: ^0.1.2
+  flutter_calendar_carousel: ^1.3.11
 
 dev_dependencies:
   flutter_test:
@@ -41,62 +47,57 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-<<<<<<< HEAD
-
-=======
->>>>>>> Employee
   assets:
-  - images/login.png
-  - images/logo.png
+  
+  - assests/images/toastershadow.png
+  - assests/images/g.png
+  - assests/images/login-ipad.png
+  - assests/images/logo-ipad.png
+  - assests/images/login.png
+  - assests/images/logo.png
+  - assests/images/shadow.png
 
-<<<<<<< HEAD
-=======
+
   fonts:
     - family: CustomIcons
       fonts:
-        - asset: fonts/CustomIcons.ttf
+        - asset: assests/fonts/CustomIcons.ttf
 
     - family: SairaSemiCondensed
       fonts:
-        - asset: fonts/SairaSemiCondensed-Black.ttf
-        - asset: fonts/SairaSemiCondensed-Bold.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Black.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Bold.ttf
           weight: 900   
+        - asset: assests/fonts/SairaSemiCondensed-ExtraBold.ttf
+        - asset: assests/fonts/SairaSemiCondensed-ExtraLight.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Light.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Medium.ttf
+          weight: 300
+        - asset: assests/fonts/SairaSemiCondensed-Regular.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Thin.ttf
+        - asset: assests/fonts/SairaSemiCondensed-Black.ttf
+        - asset: assests/fonts/SairaSemiCondensed-SemiBold.ttf
     
         
 
->>>>>>> Employee
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
+  # https://flutter.io/assets-and-assests/images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.io/assets-and-images/#from-packages
+  # https://flutter.io/assets-and-assests/images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-<<<<<<< HEAD
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-=======
     # - family: Schyler
     #   fonts:
-    #     - asset: fonts/Schyler-Regular.ttf
-    #     - asset: fonts/Schyler-Italic.ttf
+    #     - asset: assests/fonts/Schyler-Regular.ttf
+    #     - asset: assests/fonts/Schyler-Italic.ttf
     #       style: italic
        
    
->>>>>>> Employee
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.io/custom-fonts/#from-packages
+  # see https://flutter.io/custom-assests/fonts/#from-packages
